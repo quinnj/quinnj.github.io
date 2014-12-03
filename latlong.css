@@ -2,15 +2,69 @@
 
 * { font-family: 'Roboto', sans-serif; line-height:1.2; vertical-align:middle; }
 
+h4 {
+    margin: 3px 3px 20px 3px;
+}
+
 .panel {
         position: absolute;
         top: 5px;
-        left: 50%;
+        left: 40%;
         margin-left: -180px;
         z-index: 5;
-        background-color: #fff;
+        background-color: #E5E5E5;
         padding: 5px;
         border: 1px solid #999;
+        border-radius:3px;
+}
+
+.bar {
+    width: 170px;
+    float: left;
+    display: none;
+}
+
+.info1-header {
+    float: left;
+}
+
+.info1-data {
+    float: left;
+    clear:both;
+    display: none;
+    width: 125px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    margin-left:5px;
+}
+
+.info1-bar {
+    float: left;
+    display: none;
+    color: white;
+    opacity: 0.6;
+}
+
+#info1-00 {
+    background-color:black;
+}
+#info1-11 {
+    background-color:red;
+}
+#info1-22 {
+    background-color:blue;
+}
+
+.info.hover .info1-data {
+    display: block;
+}
+
+.info.hover .bar {
+    display: block;
+}
+
+.info.hover .info1-bar {
+    display: block;
 }
 
 .info.hover {
@@ -19,21 +73,43 @@
 
 .info {
     position: absolute;
-    bottom: 10%;
+    background-color: #E5E5E5;
+    opacity: .9;
+    bottom: 12%;
     right: 5%;
     z-index: 1;
-    width: 180px;
+    border-radius:3px;
+    content:"i";
+    width: 300px;
     height: 30px;
     transition:.7s, margin-bottom .15s;
 }
 
+/*.info:after {
+  position:absolute;
+  font-size:.9rem;
+  top:0.5rem;
+  right:.5rem;
+  content:"i";
+  border:thin solid gray;
+  color:gray;
+  width:.75rem;
+  line-height:.75rem;
+  text-align:center;
+  border-radius:50%;
+  pointer-events:visiblePainted ;
+}*/
+
 .front-flip {
     position: absolute;
     bottom: 10%;
+    background-color: #E5E5E5;
     right: 5%;
     z-index: 1;
-    width: 180px;
-    height: 30px;
+    border-radius:3px;
+    font-size: 18px;
+    width: 300px;
+    height: 50px;
 }
 
 /* entire container, keeps perspective */
