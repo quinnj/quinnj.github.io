@@ -74,7 +74,6 @@ function calcRoute() {
       addHeat(response);
     }
   });
-  document.querySelector('#info1').classList.toggle('hover');
 }
 
 function codeAddress() {
@@ -96,6 +95,13 @@ function codeAddress() {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
+function hideDivs() {
+  for (i = 0; i < 3; i++) {
+    document.querySelector('#info1-'+i).setAttribute("style","display:none");
+    document.querySelector('#info1-'+i+i).setAttribute("style","display:none");  
+  }
+  document.querySelector('#info1').classList.remove('hover');
+}
     </script>
   </head>
   <body>
@@ -103,15 +109,21 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <div class="flipper">
       <div class="front">
         <div id="panel" class="panel">
-          <strong> Start: </strong>
-          <input type="text" name="start" value="Monroeville, PA">
-          <strong> End: </strong>
-          <input type="text" name="end" value="Heinz Field">
-          <button onclick="calcRoute();">Go!</button>
-          <button onclick="document.querySelector('#info1').classList.toggle('hover');">Info</button>
+          Start:<input type="text" name="start" value="Monroeville, PA">
+          End:<input type="text" name="end" value="Heinz Field">
+          <input type="submit" onclick="calcRoute();" value="Go!">
         </div>
-        <div id="info1" class="info" onclick="document.querySelector('#info1').classList.toggle('hover');">
-        <strong>This is a div</strong>
+        <div id="info1" class="info" onclick="hideDivs();">
+        <h4 class=".info1-header">Fatal Auto Accidents</h4>
+          <div class="info1-data" id="info1-0">`</div>
+            <div class="bar">
+              <div class="info1-bar" id="info1-00" align="left">`</div></div>
+          <div class="info1-data" id="info1-1">`</div>
+            <div class="bar">
+              <div class="info1-bar" id="info1-11" align="left">`</div></div>
+          <div class="info1-data" id="info1-2">`</div>
+            <div class="bar">
+              <div class="info1-bar" id="info1-22" align="left">`</div></div>
         </div>
         <button class="front-flip" onclick="document.querySelector('#flip-toggle').classList.toggle('hover');">10-Mile Radius</button>
         <div id="map-canvas"></div>
@@ -119,7 +131,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <div class="back">
         <div id="panel" class="panel">
           <input type="text" name="address" value="Pittsburgh, PA">
-          <button onclick="codeAddress();">Go!</button>
+          <input type="submit" onclick="codeAddress();" value="Go!">
         </div>
         <div class="info">this is a div</div>
         <button class="front-flip" onclick="document.querySelector('#flip-toggle').classList.toggle('hover');">Navigation</button>
