@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Directions service</title>
+    <link rel="stylesheet" type="text/css" href="latlong.css">
+    <style>
+      html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=true_or_false"></script>
+    <script src="heatmap.js"></script>
+    <script src="heatdata2.js"></script>
+    <script>
+var directionsDisplays = [];
+var directionsService = new google.maps.DirectionsService();
+var map;
+var heatmap;
+var map2;
+var heatmap2;
+
+function initialize() {
+  var mapOptions = {
+    zoom:5,
+    center: new google.maps.LatLng(38.0, -96.0)
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  directionsDisplays[0] = new google.maps.DirectionsRenderer(
+      {polylineOptions: {strokeColor: "black", strokeOpacity: 0.6, strokeWeight: 5, zIndex: 2},
+       routeIndex: 0,
+       map: map});
+  directionsDisplays[1] = new google.maps.DirectionsRenderer(
+    {polylineOptions: {strokeColor: "red", strokeOpacity: 0.6, strokeWeight: 5, zIndex: 1},
+       routeIndex: 1,
+       map: map});
+  directionsDisplays[2] = new google.maps.DirectionsRenderer(
+    {polylineOptions: {strokeColor: "blue", strokeOpacity: 0.6, strokeWeight: 5, zIndex: 0},
+       routeIndex: 2,
+       map: map});
+  
+  geocoder = new google.maps.Geocoder();
+  var mapOptions2 = {
+    zoom:13,
+    center: new google.maps.LatLng(40.435, -79.95)
+  };
+  map2 = new google.maps.Map(document.getElementById('map-canvas2'), mapOptions2);
+}
+
+function calcRoute() {
+  var start = document.getElementsByName('start')[0].value;
+  var end = document.getElementsByName('end')[0].value;
+  var request = {
+      origin:start,
+      destination:end,
+      travelMode: google.maps.TravelMode.DRIVING,
+      provideRouteAlternatives: true
+  };
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplays[0].setDirections(response);
+      directionsDisplays[0].routeIndex = 0;
+      directionsDisplays[1].setDirections(response);
+      directionsDisplays[1].routeIndex = 1;
+      directionsDisplays[2].setDirections(response);
+      directionsDisplays[2].routeIndex = 2;
+      if (heatmap) {
+        heatmap.setMap(null);
+      }
+      addHeat(response);
+    }
+  });
+  document.querySelector('#info1').classList.toggle('hover');
+}
+
+function codeAddress() {
+    var address = document.getElementsByName('address')[0].value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        //map.setZoom(12);
+        map2.panTo(results[0].geometry.location);
+        var bnds = map2.getBounds();
+        if (heatmap2) {
+          heatmap2.setMap(null);
+        }
+        addHeat2(bnds);
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div class="flip-container" id="flip-toggle">
+    <div class="flipper">
+      <div class="front">
+        <div id="panel" class="panel">
+          <strong> Start: </strong>
+          <input type="text" name="start" value="Monroeville, PA">
+          <strong> End: </strong>
+          <input type="text" name="end" value="Heinz Field">
+          <button onclick="calcRoute();">Go!</button>
+          <button onclick="document.querySelector('#info1').classList.toggle('hover');">Info</button>
+        </div>
+        <div id="info1" class="info" onclick="document.querySelector('#info1').classList.toggle('hover');">
+        <strong>This is a div</strong>
+        </div>
+        <button class="front-flip" onclick="document.querySelector('#flip-toggle').classList.toggle('hover');">10-Mile Radius</button>
+        <div id="map-canvas"></div>
+      </div>
+      <div class="back">
+        <div id="panel" class="panel">
+          <input type="text" name="address" value="Pittsburgh, PA">
+          <button onclick="codeAddress();">Go!</button>
+        </div>
+        <div class="info">this is a div</div>
+        <button class="front-flip" onclick="document.querySelector('#flip-toggle').classList.toggle('hover');">Navigation</button>
+        <div id="map-canvas2"></div>
+      </div>
+    </div>
+    </div>
+  </body>
+</html>
