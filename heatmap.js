@@ -27,6 +27,14 @@ function searchsortedlast(v, x) {
 }
 
 function addHeat(response) {
+    if (heatmap) {
+        heatmap.setMap(null);
+    }
+    var selhours = document.getElementsByName('hour')
+    var selhour = selhours[1].checked ? 1 : selhours[2].checked ? 2 : 
+                  selhours[3].checked ? 3 : 0
+    var selweats = document.getElementsByName('weather')
+    var selweat = selweats[1].checked ? 1 : selweats[2].checked ? 2 : 0
     var heat = [];
     var accidents = [0,0,0];
     var routenames = [];
@@ -47,7 +55,11 @@ function addHeat(response) {
             latupbnd = searchsortedfirst(lats, latupper)
             for (j = latlowbnd; j < latupbnd; j++) {
                 lng = longs[j]
-                if (longlower <= lng && lng <= longupper) {
+                hour = hours[j]
+                weat = weathers[j]
+                if (longlower <= lng && lng <= longupper &&
+                    (selhour == hour || selhour == 0) && 
+                    (selweat == weat || selweat == 0)) {
                     heat[k] = new google.maps.LatLng(lats[j], lng)
                     k++;
                     accidents[ii] += 1;
@@ -81,6 +93,9 @@ function addHeat(response) {
 }
 
 function addHeat2(bnds) {
+    if (heatmap2) {
+        heatmap2.setMap(null);
+    }
     var latlower = bnds.getSouthWest().lat();
     var latupper = bnds.getNorthEast().lat();
     var longlower = bnds.getSouthWest().lng();

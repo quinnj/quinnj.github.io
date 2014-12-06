@@ -6,6 +6,11 @@ h4 {
     margin: 3px 3px 20px 3px;
 }
 
+input {
+    margin: 3px 3px 3px 3px;
+    padding: 2px 2px 2px 2px;
+}
+
 .panel {
         position: absolute;
         top: 5px;
@@ -43,6 +48,7 @@ h4 {
     display: none;
     color: white;
     opacity: 0.6;
+    padding-left: 1px;
 }
 
 #info1-00 {
@@ -68,7 +74,7 @@ h4 {
 }
 
 .info.hover {
-    height:180px
+    height:200px
 }
 
 .info {

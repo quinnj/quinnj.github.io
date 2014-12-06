@@ -23,6 +23,8 @@ var map;
 var heatmap;
 var map2;
 var heatmap2;
+var rsp;
+var bounds;
 
 function initialize() {
   var mapOptions = {
@@ -68,9 +70,7 @@ function calcRoute() {
       directionsDisplays[1].routeIndex = 1;
       directionsDisplays[2].setDirections(response);
       directionsDisplays[2].routeIndex = 2;
-      if (heatmap) {
-        heatmap.setMap(null);
-      }
+      rsp = response;
       addHeat(response);
     }
   });
@@ -83,9 +83,7 @@ function codeAddress() {
         //map.setZoom(12);
         map2.panTo(results[0].geometry.location);
         var bnds = map2.getBounds();
-        if (heatmap2) {
-          heatmap2.setMap(null);
-        }
+        bounds = bnds;
         addHeat2(bnds);
       } else {
         alert("Geocode was not successful for the following reason: " + status);
@@ -102,6 +100,15 @@ function hideDivs() {
   }
   document.querySelector('#info1').classList.remove('hover');
 }
+
+function handleClick(radio) {
+  addHeat(rsp);
+}
+
+function openHelp() {
+  url = 'http://quinnj.github.io/deloitte-aam-fars-capstone-project'
+  window.open(url,'_blank')
+}
     </script>
   </head>
   <body>
@@ -112,6 +119,16 @@ function hideDivs() {
           Start:<input type="text" name="start" value="Monroeville, PA">
           End:<input type="text" name="end" value="Heinz Field">
           <input type="submit" onclick="calcRoute();" value="Go!">
+          <input type="button" onclick="openHelp();" value="Help">
+          <br>
+          <input type="radio" onclick="handleClick(this);" name="hour" value="All" checked>Any Time
+          <input type="radio" onclick="handleClick(this);" name="hour" value="Morning">Morning
+          <input type="radio" onclick="handleClick(this);" name="hour" value="Afternoon">Afternoon
+          <input type="radio" onclick="handleClick(this);" name="hour" value="Night">Night
+          <br>
+          <input type="radio" onclick="handleClick(this);" name="weather" value="All" checked>Any Weather
+          <input type="radio" onclick="handleClick(this);" name="weather" value="Clear">Clear
+          <input type="radio" onclick="handleClick(this);" name="weather" value="Adverse">Adverse
         </div>
         <div id="info1" class="info" onclick="hideDivs();">
         <h4 class=".info1-header">Fatal Auto Accidents</h4>
