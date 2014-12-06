@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    
     <title>Data Structures as Code: The Joys of Meta-Programming</title>
     <meta name="description" content="" />
 
@@ -14,14 +12,50 @@
 
     <link rel="shortcut icon" href="../../../../favicon.ico">
 
-    
     <link rel="stylesheet" type="text/css" href="../../../../assets/css/screen.css" />
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic%7COpen+Sans:700,400" />
 
+    <link rel="canonical" href="http://quinnj.github.io/2014/06/19/data-structures-as-code-the-joys-of-meta-programming/" />
     
-    <meta name="generator" content="Ghost 0.4" />
-<link rel="alternate" type="application/rss+xml" title="Du Traitement des Données" href="../../../../rss/index.html">
-<link rel="canonical" href="http://quinnj.github.io/2014/06/19/data-structures-as-code-the-joys-of-meta-programming/" />
+    <meta property="og:site_name" content="Du Traitement des Données" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Data Structures as Code: The Joys of Meta-Programming" />
+    <meta property="og:description" content="While working on a major rewrite of the Datetime Julia library for Dates and DateTimes, increased performance was a key goal. And though the original implementation was already fast, Julia developers tend to be greedy, so naturally I wanted more..." />
+    <meta property="og:url" content="http://quinnj.github.io/2014/06/19/data-structures-as-code-the-joys-of-meta-programming/" />
+    <meta property="article:published_time" content="2014-06-19T17:45:33.228Z" />
+    <meta property="article:modified_time" content="2014-06-19T18:45:33.542Z" />
+    <meta property="article:tag" content="julia" />
+    <meta property="article:tag" content="metaprogramming" />
+    <meta property="article:tag" content="datetime" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Data Structures as Code: The Joys of Meta-Programming" />
+    <meta name="twitter:description" content="While working on a major rewrite of the Datetime Julia library for Dates and DateTimes, increased performance was a key goal. And though the original implementation was already fast, Julia developers tend to be greedy, so naturally I wanted more..." />
+    <meta name="twitter:url" content="http://quinnj.github.io/2014/06/19/data-structures-as-code-the-joys-of-meta-programming/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Du Traitement des Données",
+    "author": {
+        "@type": "Person",
+        "name": "Jacob Quinn",
+        "image": "http://quinnj.github.io/content/images/2014/Jun/hiking_profile.jpg",
+        "url": "http://quinnj.github.io/author/jacob-quinn",
+        "sameAs": "https://github.com/quinnj"
+    },
+    "headline": "Data Structures as Code: The Joys of Meta-Programming",
+    "url": "http://quinnj.github.io/2014/06/19/data-structures-as-code-the-joys-of-meta-programming/",
+    "datePublished": "2014-06-19T17:45:33.228Z",
+    "dateModified": "2014-06-19T18:45:33.542Z",
+    "keywords": "julia, metaprogramming, datetime",
+    "description": "While working on a major rewrite of the Datetime Julia library for Dates and DateTimes, increased performance was a key goal. And though the original implementation was already fast, Julia developers tend to be greedy, so naturally I wanted more..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5" />
+    <link rel="alternate" type="application/rss+xml" title="Du Traitement des Données" href="http://quinnj.github.io/rss/" />
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -36,25 +70,17 @@
 <body class="post-template tag-julia tag-metaprogramming tag-datetime">
 
     
-    
-
-
 
 <main class="content" role="main">
 
     <article class="post tag-julia tag-metaprogramming tag-datetime">
 
-        
         <header class="post-header">
             <a class="blog-logo" href="http://quinnj.github.io">
-                
                     <span class="blog-title">Du Traitement des Données</span>
-                
             </a>
         </header>
 
-        
-        
 
             <span class="post-meta"><time datetime="2014-06-19">19 Jun 2014</time> on <a href="../../../../tag/julia/index.html">julia</a> | <a href="../../../../tag/metaprogramming/index.html">metaprogramming</a> | <a href="../../../../tag/datetime/index.html">datetime</a></span>
 
@@ -292,7 +318,6 @@ Out [62]: 1-element Array{Any,1}:
 
             </footer>
 
-        
 
     </article>
 
@@ -307,10 +332,8 @@ Out [62]: 1-element Array{Any,1}:
         </div>
     </footer>
 
-    
     <script src="../../../../public/jquery.js"></script>
 
-    
     <script type="text/javascript" src="../../../../assets/js/jquery.fitvids.js"></script>
     <script type="text/javascript" src="../../../../assets/js/index.js"></script>
 
