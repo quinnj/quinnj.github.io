@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Deloitte AAM FARS Capstone Project</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../../../../assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic%7COpen+Sans:700,400" />
+
+    <link rel="canonical" href="http://quinnj.github.io/2014/12/06/deloitte-aam-fars-capstone-project/" />
+    
+    <meta property="og:site_name" content="Du Traitement des Données" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Deloitte AAM FARS Capstone Project" />
+    <meta property="og:description" content="Background This webapp was put together as apart of a capstone project for Deloitte AAM. The project involved utilizing analytics and machine learning to model fatal auto accident propensity. This webapp aims to provide insight on fatal accident densities by..." />
+    <meta property="og:url" content="http://quinnj.github.io/2014/12/06/deloitte-aam-fars-capstone-project/" />
+    <meta property="article:published_time" content="2014-12-06T21:30:32.128Z" />
+    <meta property="article:modified_time" content="2014-12-07T03:22:55.061Z" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Deloitte AAM FARS Capstone Project" />
+    <meta name="twitter:description" content="Background This webapp was put together as apart of a capstone project for Deloitte AAM. The project involved utilizing analytics and machine learning to model fatal auto accident propensity. This webapp aims to provide insight on fatal accident densities by..." />
+    <meta name="twitter:url" content="http://quinnj.github.io/2014/12/06/deloitte-aam-fars-capstone-project/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Du Traitement des Données",
+    "author": {
+        "@type": "Person",
+        "name": "Jacob Quinn",
+        "image": "http://quinnj.github.io/content/images/2014/Jun/hiking_profile.jpg",
+        "url": "http://quinnj.github.io/author/jacob-quinn",
+        "sameAs": "https://github.com/quinnj"
+    },
+    "headline": "Deloitte AAM FARS Capstone Project",
+    "url": "http://quinnj.github.io/2014/12/06/deloitte-aam-fars-capstone-project/",
+    "datePublished": "2014-12-06T21:30:32.128Z",
+    "dateModified": "2014-12-07T03:22:55.061Z",
+    "description": "Background This webapp was put together as apart of a capstone project for Deloitte AAM. The project involved utilizing analytics and machine learning to model fatal auto accident propensity. This webapp aims to provide insight on fatal accident densities by..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.5" />
+    <link rel="alternate" type="application/rss+xml" title="Du Traitement des Données" href="http://quinnj.github.io/rss/" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-9358536-6', 'quinnj.github.io');
+      ga('send', 'pageview');
+
+    </script>
+</head>
+<body class="post-template">
+
+    
+
+<main class="content" role="main">
+
+    <article class="post">
+
+        <header class="post-header">
+            <a class="blog-logo" href="http://quinnj.github.io">
+                    <span class="blog-title">Du Traitement des Données</span>
+            </a>
+        </header>
+
+
+            <span class="post-meta"><time datetime="2014-12-06">06 Dec 2014</time> </span>
+
+            <h1 class="post-title">Deloitte AAM FARS Capstone Project</h1>
+
+            <section class="post-content">
+                <h4 id="background">Background</h4>
+
+<p>This <a href="http://quinnj.github.io/heatmap.html">webapp</a> was put together as apart of a capstone project for Deloitte AAM. The project involved utilizing analytics and machine learning to model fatal auto accident propensity. This webapp aims to provide insight on fatal accident densities by interfacing with public Google API's combined with the FARS dataset.</p>
+
+<h4 id="usage">Usage</h4>
+
+<h6 id="navigationapp">Navigation App</h6>
+
+<ul>
+<li>Enter a starting and ending location</li>
+<li>Select time of day or weather filters</li>
+<li>Push the <code>Go!</code> button</li>
+<li>Select time of day or weather filters to view differences</li>
+</ul>
+
+<h6 id="10mileradiusapp">10-Mile Radius App</h6>
+
+<ul>
+<li>Enter a location</li>
+<li>Push the <code>Go!</code> button</li>
+</ul>
+
+<h4 id="howitworks">How It Works</h4>
+
+<ul>
+<li>The <strong>Navigation</strong> app queries the <a href="https://developers.google.com/maps/documentation/directions/">Google Directions API</a> to obtain the 1-3 recommended routes from point A to point B; the <strong>10-Mile Radius</strong> app calculates the latitude and longitude bounds on the map after centering it on the entered location</li>
+<li>With the recommended routes, the FARS dataset of fatal auto accidents is processed to identify accidents that occurred along each route that satisfy any time of day or weather filters</li>
+<li>The applicable accidents are plotted along the navigation routes or in the 10-mile bounding box by utilizing the <a href="https://developers.google.com/maps/documentation/javascript/heatmaplayer">Google Heatmap Layer API</a>.</li>
+</ul>
+
+<h4 id="definitions">Definitions</h4>
+
+<ul>
+<li>Data source is the government-provided FARS data set of fatal auto accidents released each year. Data includes attributes of accidents and vehicles and people involved. (<a href="http://www.nhtsa.gov/FARS">http://www.nhtsa.gov/FARS</a>)</li>
+<li><code>Any Time</code>: Show fatal accidents that occurred at any time of day</li>
+<li><code>Morning</code>: Show fatal accidents that occurred between 4 AM and 12 PM</li>
+<li><code>Afternoon</code>: Show fatal accidents that occurred between 12 PM and 7 PM</li>
+<li><code>Night</code>: Show fatal accidents that occurred between 7 PM and 4 AM</li>
+<li><code>Any Weather</code>: Show fatal accidents that occurred under any weather condition</li>
+<li><code>Clear</code>: Show fatal accidents that occurred under clear weather conditions</li>
+<li><code>Adverse</code>: Show fatal accidents that occurred under adverse weather conditions, including rain, snow, sleet, hail, severe wind, and fog.</li>
+</ul>
+            </section>
+
+            <footer class="post-footer">
+
+                <section class="author">
+                    <h4>Jacob Quinn</h4>
+                    <p>Data Science Master&#x27;s Student at Carnegie Mellon</p>
+                    <ul class="author-meta clearfix">
+                        <li>Pittsburgh, PA</li>
+                        <li><a href="https://github.com/quinnj">https://github.com/quinnj</a></li>
+                    </ul>
+                </section>
+
+                <section class="share">
+                    <h4>Share this post</h4>
+                    <a class="icon-twitter" href="https://twitter.com/share?text=Deloitte%20AAM%20FARS%20Capstone%20Project&amp;url=http://quinnj.github.io/2014/12/06/deloitte-aam-fars-capstone-project/"
+                        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                        <span class="hidden">Twitter</span>
+                    </a>
+                    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://quinnj.github.io/2014/12/06/deloitte-aam-fars-capstone-project/"
+                        onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                        <span class="hidden">Facebook</span>
+                    </a>
+                    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://quinnj.github.io/2014/12/06/deloitte-aam-fars-capstone-project/"
+                       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                        <span class="hidden">Google+</span>
+                    </a>
+                </section>
+
+            </footer>
+
+
+    </article>
+
+</main>
+
+
+    <footer class="site-footer">
+        <a class="subscribe icon-feed" href="http://quinnj.github.io/rss/"><span class="tooltip">Subscribe!</span></a>
+        <div class="inner">
+             <section class="copyright">All content copyright <a href="http://quinnj.github.io/">Du Traitement des Données</a> &copy; 2014 &bull; All rights reserved.</section>
+             <section class="poweredby">Proudly published with <a class="icon-ghost" href="https://ghost.org">Ghost</a></section>
+        </div>
+    </footer>
+
+    <script src="../../../../public/jquery.js"></script>
+
+    <script type="text/javascript" src="../../../../assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="../../../../assets/js/index.js"></script>
+
+</body>
+</html>
