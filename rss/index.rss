@@ -1,14 +1,96 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Du Traitement des Données</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.11</generator><lastBuildDate>Fri, 28 Oct 2016 04:35:12 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>JSoC 2015 Project: DataStreams.jl</title><description>&lt;h1 id="jsoc2015projectdatastreamsjl"&gt;JSoC 2015 project: DataStreams.jl&lt;/h1&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Du Traitement des Données</title><description>Data and Julia.</description><link>http://localhost:2368/</link><generator>Ghost 0.11</generator><lastBuildDate>Fri, 28 Oct 2016 06:20:38 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>DataStreams.jl v0.1</title><description>&lt;p&gt;It's been almost exactly a year since my original &lt;a href="http://julialang.org/blog/2015/10/datastreams"&gt;blog post&lt;/a&gt; about DataStreams.jl, so I figure it's time for an update!&lt;/p&gt;
 
-&lt;p&gt;&lt;span class="timestamp"&gt;25 Oct 2015&lt;/span&gt;  |  &lt;span class="author"&gt;&lt;a href="https://github.com/quinnj"&gt;Jacob Quinn&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;There's actually quite a bit to announce and I'm really excited with how things have developed over the last year.&lt;/p&gt;
+
+&lt;h5 id="whatisdatastreamsjlagain"&gt;What is DataStreams.jl again?&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/JuliaData/DataStreams.jl"&gt;DataStreams.jl&lt;/a&gt; is&lt;/p&gt;</description><link>http://localhost:2368/datastreams-jl-v0-1/</link><guid isPermaLink="false">6e5dfa21-1bb4-449f-bd7c-e8f1f4615572</guid><dc:creator>Jacob Quinn</dc:creator><pubDate>Fri, 28 Oct 2016 06:20:28 GMT</pubDate><content:encoded>&lt;p&gt;It's been almost exactly a year since my original &lt;a href="http://julialang.org/blog/2015/10/datastreams"&gt;blog post&lt;/a&gt; about DataStreams.jl, so I figure it's time for an update!&lt;/p&gt;
+
+&lt;p&gt;There's actually quite a bit to announce and I'm really excited with how things have developed over the last year.&lt;/p&gt;
+
+&lt;h5 id="whatisdatastreamsjlagain"&gt;What is DataStreams.jl again?&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/JuliaData/DataStreams.jl"&gt;DataStreams.jl&lt;/a&gt; is about designing interfaces for easy and efficient transfer of "table-like" data (i.e. data that can, at least in some sense, be described by rows and columns) between sources and sinks. The key is to provide an interface (i.e. set of required methods to implement) such that as long as a source correctly implements, it can now "stream" data to any existing, valid sink. Similarly, as long as a sink implements the required "sink interface" methods, it should then be able to "receive" data from any source. I gave an intro to the framework in my &lt;a href="https://www.youtube.com/watch?v=N39V6JMWazo"&gt;2016 JuliaCon talk&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Traditionally, sources and sinks have been developed in isolation, with a source or sink having to provide its own options for interacting with other sources/sinks, usually only a single option (e.g. reading a csv file read in as a dataframe, or loading a csv file into a database). This is pain-staking work, however, to support for each package independently. Imagine as a database middleware developer, do I really want to go through the effort of allowing users to load data into a DB via csv file, sqlite table, dataframe, etc.? A natural first step is to stop and say, "well, I can't possibly support all existing or future types of sources to load into a DB, but I could define a common interface, and as long as a source implements the interface, I can load it into the db". All the sudden, this dev relieves herself of having to be an expert in the most-efficient handling of a specific datasource type, opting instead to allow source developers to code to an interface.&lt;/p&gt;
+
+&lt;p&gt;This line of reasoning has been taken even several steps further in the maturation of the DataStreams.jl framework. Independent interfaces exist for both &lt;code&gt;Data.Source&lt;/code&gt; types, as well as &lt;code&gt;Data.Sink&lt;/code&gt;s. DataStreams.jl itself provides a set of common &lt;code&gt;Data.stream!&lt;/code&gt; methods that handle the actual initialization, streaming, and closedown of the data ingestion process, but has and needs no outside knowledge of the specific Source/Sink implementations. For a real-life example, the &lt;a href="https://github.com/JuliaData/CSV.jl"&gt;CSV.jl&lt;/a&gt; package now provides a &lt;code&gt;CSV.Source&lt;/code&gt; type which implements the &lt;code&gt;Data.Source&lt;/code&gt; interface and concerns itself solely with producing table-like data as efficiently as possible. &lt;code&gt;CSV.Sink&lt;/code&gt;, on the other hand, implements the &lt;code&gt;Data.Sink&lt;/code&gt; interface and only has to worry about storing table-data to disk in the csv format. One of the most powerful results of this Source-Sink decoupling is the fact that adding a new Source or Sink into the ecosystem is &lt;code&gt;O(1)&lt;/code&gt;, i.e. I don't have to worry about whether my new source type will be compatible with outputting data to 10 different sink types. I define how my source provides data, ensure the &lt;code&gt;Data.Source&lt;/code&gt; interface is properly implemented, and boom, my new source can now interact with any existing and future sinks, automatically and efficiently.&lt;/p&gt;
+
+&lt;p&gt;For a more technical and in-depth reading of the interfaces for &lt;code&gt;Data.Source&lt;/code&gt; or &lt;code&gt;Data.Sink&lt;/code&gt;, see the docs &lt;a href="http://juliadata.github.io/DataStreams.jl/stable/"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h5 id="newdatastreamsfeatures"&gt;New DataStreams Features&lt;/h5&gt;
+
+&lt;p&gt;In addition to the power of Source-Sink decoupling, having the actual streaming framework defined centrally in DataStreams.jl allows for several other useful features:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Appending&lt;/strong&gt;: oftentimes, a user needs to aggregate several sources into a single sink; as part of the &lt;code&gt;Data.Sink&lt;/code&gt; interface, sinks must account for the streaming scenario where new source data will be appended to existing sink data (with matching schema as an obvious requirement)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Transforms&lt;/strong&gt;: often, users need to apply simple data cleansing or manipulating tasks to source data before it's in a useable form to analyze or output to a sink. With the data transfer defined centrally, it was extremely simple to allow the user to supply a set of transform functions that should be applied to the data "in-transit", i.e. as a single field value or column of values is provided by the &lt;code&gt;Data.Source&lt;/code&gt;, the transform function is applied before sending to the &lt;code&gt;Data.Sink&lt;/code&gt; for storage. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Package use consistency&lt;/strong&gt;: due to the consistency of implementing the &lt;code&gt;Data.Source&lt;/code&gt; and &lt;code&gt;Data.Sink&lt;/code&gt; interfaces separately, each package has a natural "high-level" convenience method fall out. Such methods for Sources are:
+&lt;ul&gt;&lt;li&gt;&lt;code&gt;CSV.read(file, sink=DataFrame; append=false, transforms=Dict())&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SQL.query(db, query, sink=DataFrame; append=false, transforms=Dict())&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Feather.read(file, sink=DataFrame; append=false, transforms=Dict())&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ODBC.query(dsn, query, sink=DataFrame; append=false, transforms=Dict())&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The definition for these convenience methods are almost identical across packages, utilizing the same DataStreams.jl infrastructure, and all allowing the common DataStream features such as specifying any &lt;code&gt;sink&lt;/code&gt; argument they'd like (typically a &lt;code&gt;DataFrame&lt;/code&gt; by default), whether to &lt;code&gt;append&lt;/code&gt; to the sink or not, and any &lt;code&gt;transform&lt;/code&gt; functions that should be applied along the way. These convenience methods work by constructing &lt;code&gt;Data.Source&lt;/code&gt; (and possibly &lt;code&gt;Data.Sink&lt;/code&gt;) types "on-the-fly" before calling &lt;code&gt;Data.stream!(source, sink)&lt;/code&gt; and &lt;code&gt;Data.close!(sink)&lt;/code&gt; to perform the actual data transfer. &lt;/p&gt;
+
+&lt;p&gt;Similar convenience methods for &lt;code&gt;Data.Sink&lt;/code&gt; are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;CSV.write(file, source)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SQLite.load(db, tablename, source)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Feather.write(file, source)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ODBC.load(dsn, tablename)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;with all supporting the same &lt;code&gt;append&lt;/code&gt; and &lt;code&gt;transforms&lt;/code&gt; keyword arguments as well.&lt;/p&gt;
+
+&lt;h5 id="whatsnext"&gt;What's next:&lt;/h5&gt;
+
+&lt;p&gt;Things on my mind and that will be taking up my mind include:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;DataFrames modernizing: there's some major work already underway to improve the core DataFrame type for handling tabular data in Julia &lt;/li&gt;
+&lt;li&gt;Multi-source/sink streaming: though the framework already supports &lt;code&gt;append&lt;/code&gt;ing when streaming, there's more in specific use-cases that could be supported by DataStreams centrally&lt;/li&gt;
+&lt;li&gt;More formal and powerful transforms: I feel like we've only scratched the surface for transforms so far; I don't think it'll be too difficult to support thinks like: new-column transforms, multi-column transforms, and possibly aggregation transforms.&lt;/li&gt;
+&lt;li&gt;More Sources &amp;amp; Sinks!: I hope to help enable as many as possible, such as SAS, RData, certain geo-data formats, etc. Stream all the things!!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Finally, I definitely want to give shoutouts to those who have helped, with code, design, or otherwise: &lt;a href="https://github.com/davidagold"&gt;David Gold&lt;/a&gt;, &lt;a href="https://github.com/johnmyleswhite"&gt;John Myles White&lt;/a&gt;, &lt;a href="https://github.com/nalimilan"&gt;Milan Bouchet-Valat&lt;/a&gt;, &lt;a href="https://github.com/davidanthoff"&gt;David Anthoff&lt;/a&gt;, and &lt;a href="https://github.com/yeesian"&gt;Yeesian Ng&lt;/a&gt; for their direct collaboration and help, as well as many of the core contributors to &lt;a href="https://github.com/JuliaLang/julia/graphs/contributors"&gt;julia itself&lt;/a&gt;. And special shoutouts to Tom Breloff, Jiahao Chen, Cameron McBride, and Jeff Bezanson for specific discussions and suggestions at JuliaCon 2016 and since.&lt;/p&gt;
+
+&lt;p&gt;I'm also including some quick "new release news" for individual packages below, since there have been quite a few new features added:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;CSV.jl&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;&lt;li&gt;&lt;a href="http://juliadata.github.io/CSV.jl/stable/"&gt;Docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Supports a wide variety of delimited file options such as &lt;code&gt;delim&lt;/code&gt;, &lt;code&gt;quotechar&lt;/code&gt;, &lt;code&gt;escapechar&lt;/code&gt;, custom &lt;code&gt;null&lt;/code&gt; strings; a &lt;code&gt;header&lt;/code&gt; can be provided manually or on a specified row or range of rows; &lt;code&gt;types&lt;/code&gt; can be provided manually, and results can be requested as &lt;code&gt;nullable&lt;/code&gt; or not (&lt;code&gt;nullable=true&lt;/code&gt; by default); and the # of &lt;code&gt;rows&lt;/code&gt; can be provided manually (if known) for efficiency.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CSV.parsefield(io::IO, ::Type{T})&lt;/code&gt; can be called directly on any &lt;code&gt;IO&lt;/code&gt; type to tap into the delimited-parsing functionality manually&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;SQLite.jl&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;&lt;li&gt;&lt;a href="http://juliadb.github.io/SQLite.jl/stable/"&gt;Docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Query results will now use the declared table column type by default, which can help resultset column typing in some cases&lt;/li&gt;
+&lt;li&gt;Parameterized SQL statements are fully supported, with the ability to bind julia values to be sent to the DB&lt;/li&gt;
+&lt;li&gt;Full serialization/deserialization of native and custom Julia types is supported; so &lt;code&gt;Complex{Int128}&lt;/code&gt; can be stored in its own SQLite table column and retrieved without any issue&lt;/li&gt;
+&lt;li&gt;Pure Julia scalar and aggregation functions can be registered with an SQLite database and then called from within SQL statements: full docs &lt;a href="http://juliadb.github.io/SQLite.jl/stable/#User-Defined-Functions-1"&gt;here&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Feather.jl&lt;/strong&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href="http://juliastats.github.io/Feather.jl/stable/"&gt;Docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Full support for feather release v0.3.0 to ensure compatibility&lt;/li&gt;
+&lt;li&gt;Full support for returning "factor" or "category" type columns as native &lt;code&gt;CategoricalArray&lt;/code&gt; and &lt;code&gt;NullableCategoricalArray&lt;/code&gt; types in Julia, thanks to the new &lt;a href="https://github.com/JuliaData/CategoricalArrays.jl"&gt;CategoricalArrays.jl&lt;/a&gt; package&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;nullable::Bool=true&lt;/code&gt; keyword argument; if &lt;code&gt;false&lt;/code&gt;, columns without null values will be returned as &lt;code&gt;Vector{T}&lt;/code&gt; instead of &lt;code&gt;NullableVector{T}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Feather.Sink&lt;/code&gt; now supports appending, so multiple DataFrames or CSV.Source or any &lt;code&gt;Data.Source&lt;/code&gt; can all be streamed to a single feather file&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ODBC.jl&lt;/strong&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href="http://juliadb.github.io/ODBC.jl/stable/"&gt;Docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;A new &lt;code&gt;ODBC.DSN&lt;/code&gt; type that represents a valid, open connection to a database; used in all subsequent api calls; it can be constructed using a previously configured system/user dsn w/ username and password, or as a full custom connection string&lt;/li&gt;
+&lt;li&gt;Full support for the DataStreams.jl framework through the &lt;code&gt;ODBC.Source&lt;/code&gt; and &lt;code&gt;ODBC.Sink&lt;/code&gt; types, along with their high-level convenience methods &lt;code&gt;ODBC.query&lt;/code&gt; and &lt;code&gt;ODBC.load&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;A new &lt;code&gt;ODBC.prepare(dsn, sql) =&amp;gt; ODBC.Statement&lt;/code&gt; method which can send an &lt;code&gt;sql&lt;/code&gt; statement to the database to be compiled and planned before executed 1 or more times. SQL statements can include parameters to be prepared that can have dynamic values bound before each execution.&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title>JSoC 2015 Project: DataStreams.jl</title><description>&lt;p&gt;&lt;span class="timestamp"&gt;25 Oct 2015&lt;/span&gt;  |  &lt;span class="author"&gt;&lt;a href="https://github.com/quinnj"&gt;Jacob Quinn&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;[[&lt;strong&gt;&lt;em&gt;Originally posted on the official &lt;a href="http://julialang.org/blog/2015/10/datastreams"&gt;JuliaLang blog&lt;/a&gt;]]&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Data processing got ya down? Good news! The &lt;a href="https://github.com/JuliaDB/DataStreams.jl"&gt;DataStreams.jl&lt;/a&gt; package, er, framework, has arrived!&lt;/p&gt;
 
-&lt;p&gt;The DataStreams processing framework provides a consistent interface for working with data, from source to sink and eventually&lt;/p&gt;</description><link>http://localhost:2368/jsoc-2015-project-datastreams-jl/</link><guid isPermaLink="false">0722c84a-f630-4789-bfe8-616378e19b2f</guid><dc:creator>Jacob Quinn</dc:creator><pubDate>Fri, 28 Oct 2016 04:34:45 GMT</pubDate><content:encoded>&lt;h1 id="jsoc2015projectdatastreamsjl"&gt;JSoC 2015 project: DataStreams.jl&lt;/h1&gt;
-
-&lt;p&gt;&lt;span class="timestamp"&gt;25 Oct 2015&lt;/span&gt;  |  &lt;span class="author"&gt;&lt;a href="https://github.com/quinnj"&gt;Jacob Quinn&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The DataStreams processing framework provides a consistent interface for working with data, from source to sink and eventually every step in-between. It’s&lt;/p&gt;</description><link>http://localhost:2368/jsoc-2015-project-datastreams-jl/</link><guid isPermaLink="false">0722c84a-f630-4789-bfe8-616378e19b2f</guid><dc:creator>Jacob Quinn</dc:creator><pubDate>Fri, 28 Oct 2016 04:34:45 GMT</pubDate><content:encoded>&lt;p&gt;&lt;span class="timestamp"&gt;25 Oct 2015&lt;/span&gt;  |  &lt;span class="author"&gt;&lt;a href="https://github.com/quinnj"&gt;Jacob Quinn&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
 
 &lt;p&gt;[[&lt;strong&gt;&lt;em&gt;Originally posted on the official &lt;a href="http://julialang.org/blog/2015/10/datastreams"&gt;JuliaLang blog&lt;/a&gt;]]&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
@@ -76,13 +158,9 @@ OLS = glm(Y~X,df,Normal(),IdentityLink())
 &lt;li&gt;DataStream scheduling/management: I’m also interested in developing capabilities around scheduling and managing DataStreams.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;em&gt;The work on DataStreams.jl was carried out as part of the Julia Summer of Code program, made possible thanks to the generous support of the &lt;a href="https://moore.org"&gt;Gordon and Betty Moore Foundation&lt;/a&gt;, and MIT.&lt;/em&gt;&lt;/p&gt;</content:encoded></item><item><title>Deloitte AAM FARS Capstone Project</title><description>&lt;h1 id="deloitteaamfarscapstoneproject"&gt;Deloitte AAM FARS Capstone Project&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;The work on DataStreams.jl was carried out as part of the Julia Summer of Code program, made possible thanks to the generous support of the &lt;a href="https://moore.org"&gt;Gordon and Betty Moore Foundation&lt;/a&gt;, and MIT.&lt;/em&gt;&lt;/p&gt;</content:encoded></item><item><title>Deloitte AAM FARS Capstone Project</title><description>&lt;h4 id="background"&gt;Background&lt;/h4&gt;
 
-&lt;h4 id="background"&gt;Background&lt;/h4&gt;
-
-&lt;p&gt;This &lt;a href="http://quinnj.github.io/heatmap.html"&gt;webapp&lt;/a&gt; was put together as apart of a capstone project for Deloitte AAM. The project involved utilizing analytics and machine learning to model fatal auto accident propensity. This webapp aims to provide insight on fatal accident densities by interfacing with public Google API's&lt;/p&gt;</description><link>http://localhost:2368/untitled/</link><guid isPermaLink="false">4e2bce9d-d98c-4f86-bf4a-c340ab0447f7</guid><dc:creator>Jacob Quinn</dc:creator><pubDate>Fri, 28 Oct 2016 04:27:19 GMT</pubDate><content:encoded>&lt;h1 id="deloitteaamfarscapstoneproject"&gt;Deloitte AAM FARS Capstone Project&lt;/h1&gt;
-
-&lt;h4 id="background"&gt;Background&lt;/h4&gt;
+&lt;p&gt;This &lt;a href="http://quinnj.github.io/heatmap.html"&gt;webapp&lt;/a&gt; was put together as apart of a capstone project for Deloitte AAM. The project involved utilizing analytics and machine learning to model fatal auto accident propensity. This webapp aims to provide insight on fatal accident densities by interfacing with public Google API's combined with the FARS dataset.&lt;/p&gt;</description><link>http://localhost:2368/untitled/</link><guid isPermaLink="false">4e2bce9d-d98c-4f86-bf4a-c340ab0447f7</guid><dc:creator>Jacob Quinn</dc:creator><pubDate>Fri, 28 Oct 2016 04:27:19 GMT</pubDate><content:encoded>&lt;h4 id="background"&gt;Background&lt;/h4&gt;
 
 &lt;p&gt;This &lt;a href="http://quinnj.github.io/heatmap.html"&gt;webapp&lt;/a&gt; was put together as apart of a capstone project for Deloitte AAM. The project involved utilizing analytics and machine learning to model fatal auto accident propensity. This webapp aims to provide insight on fatal accident densities by interfacing with public Google API's combined with the FARS dataset.&lt;/p&gt;
 
@@ -123,13 +201,9 @@ OLS = glm(Y~X,df,Normal(),IdentityLink())
 &lt;li&gt;&lt;code&gt;Any Weather&lt;/code&gt;: Show fatal accidents that occurred under any weather condition&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Clear&lt;/code&gt;: Show fatal accidents that occurred under clear weather conditions&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;Adverse&lt;/code&gt;: Show fatal accidents that occurred under adverse weather conditions, including rain, snow, sleet, hail, severe wind, and fog.&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title>Data Structures as Code: The Joys of Meta-Programming</title><description>&lt;h1 id="datastructuresascodethejoysofmetaprogramming"&gt;Data Structures as Code: The Joys of Meta-Programming&lt;/h1&gt;
+&lt;/ul&gt;</content:encoded></item><item><title>Data Structures as Code: The Joys of Meta-Programming</title><description>&lt;p&gt;While working on a major &lt;a href="https://github.com/quinnj/Dates.jl"&gt;rewrite&lt;/a&gt; of the &lt;a href="https://github.com/quinnj/Datetime.jl"&gt;Datetime&lt;/a&gt; Julia library for Dates and DateTimes, increased performance was a key goal. And though the original implementation was already fast, Julia developers tend to be &lt;a href="http://julialang.org/blog/2012/02/why-we-created-julia/"&gt;greedy&lt;/a&gt;, so naturally I wanted more.&lt;/p&gt;
 
-&lt;p&gt;While working on a major &lt;a href="https://github.com/quinnj/Dates.jl"&gt;rewrite&lt;/a&gt; of the &lt;a href="https://github.com/quinnj/Datetime.jl"&gt;Datetime&lt;/a&gt; Julia library for Dates and DateTimes, increased performance was a key goal. And though the original implementation was already fast, Julia developers tend to be &lt;a href="http://julialang.org/blog/2012/02/why-we-created-julia/"&gt;greedy&lt;/a&gt;, so naturally I wanted more.&lt;/p&gt;
-
-&lt;p&gt;One of&lt;/p&gt;</description><link>http://localhost:2368/welcome-to-ghost/</link><guid isPermaLink="false">5851b994-3c73-43a4-a100-9bcbef374604</guid><category>Getting Started</category><dc:creator>Jacob Quinn</dc:creator><pubDate>Fri, 28 Oct 2016 04:10:03 GMT</pubDate><content:encoded>&lt;h1 id="datastructuresascodethejoysofmetaprogramming"&gt;Data Structures as Code: The Joys of Meta-Programming&lt;/h1&gt;
-
-&lt;p&gt;While working on a major &lt;a href="https://github.com/quinnj/Dates.jl"&gt;rewrite&lt;/a&gt; of the &lt;a href="https://github.com/quinnj/Datetime.jl"&gt;Datetime&lt;/a&gt; Julia library for Dates and DateTimes, increased performance was a key goal. And though the original implementation was already fast, Julia developers tend to be &lt;a href="http://julialang.org/blog/2012/02/why-we-created-julia/"&gt;greedy&lt;/a&gt;, so naturally I wanted more.&lt;/p&gt;
+&lt;p&gt;One of the known bottlenecks at the time, was how&lt;/p&gt;</description><link>http://localhost:2368/welcome-to-ghost/</link><guid isPermaLink="false">5851b994-3c73-43a4-a100-9bcbef374604</guid><category>Getting Started</category><dc:creator>Jacob Quinn</dc:creator><pubDate>Fri, 28 Oct 2016 04:10:03 GMT</pubDate><content:encoded>&lt;p&gt;While working on a major &lt;a href="https://github.com/quinnj/Dates.jl"&gt;rewrite&lt;/a&gt; of the &lt;a href="https://github.com/quinnj/Datetime.jl"&gt;Datetime&lt;/a&gt; Julia library for Dates and DateTimes, increased performance was a key goal. And though the original implementation was already fast, Julia developers tend to be &lt;a href="http://julialang.org/blog/2012/02/why-we-created-julia/"&gt;greedy&lt;/a&gt;, so naturally I wanted more.&lt;/p&gt;
 
 &lt;p&gt;One of the known bottlenecks at the time, was how &lt;a href="http://en.wikipedia.org/wiki/Leap_second"&gt;leap seconds&lt;/a&gt; were being dealt with. The &lt;code&gt;DateTime&lt;/code&gt; type accounted for leap seconds like any other second, and naturally this complicated the internals a bit. See, the internal type is just stored as a &lt;em&gt;machine instant&lt;/em&gt;, a monotonically increasing number from zero.&lt;/p&gt;
 
