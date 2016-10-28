@@ -1,66 +1,253 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Du Traitement des Données</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.11</generator><lastBuildDate>Fri, 28 Oct 2016 04:11:28 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Welcome to Ghost</title><description>&lt;p&gt;You're live! Nice. We've put together a little post to introduce you to the Ghost editor and get you started. You can manage your content by signing in to the admin area at &lt;code&gt;&amp;lt;your blog URL&amp;gt;/ghost/&lt;/code&gt;. When you arrive, you can select this post from a list&lt;/p&gt;</description><link>http://localhost:2368/welcome-to-ghost/</link><guid isPermaLink="false">5851b994-3c73-43a4-a100-9bcbef374604</guid><category>Getting Started</category><dc:creator>Jacob Quinn</dc:creator><pubDate>Fri, 28 Oct 2016 04:10:03 GMT</pubDate><content:encoded>&lt;p&gt;You're live! Nice. We've put together a little post to introduce you to the Ghost editor and get you started. You can manage your content by signing in to the admin area at &lt;code&gt;&amp;lt;your blog URL&amp;gt;/ghost/&lt;/code&gt;. When you arrive, you can select this post from a list on the left and see a preview of it on the right. Click the little pencil icon at the top of the preview to edit this post and read the next section!&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Du Traitement des Données</title><description>Thoughts, stories and ideas.</description><link>http://localhost:2368/</link><generator>Ghost 0.11</generator><lastBuildDate>Fri, 28 Oct 2016 04:27:44 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title># Deloitte AAM FARS Capstone Project</title><description>&lt;h1 id="deloitteaamfarscapstoneproject"&gt;Deloitte AAM FARS Capstone Project&lt;/h1&gt;
 
-&lt;h2 id="gettingstarted"&gt;Getting Started&lt;/h2&gt;
+&lt;h4 id="background"&gt;Background&lt;/h4&gt;
 
-&lt;p&gt;Ghost uses something called Markdown for writing. Essentially, it's a shorthand way to manage your post formatting as you write!&lt;/p&gt;
+&lt;p&gt;This &lt;a href="http://quinnj.github.io/heatmap.html"&gt;webapp&lt;/a&gt; was put together as apart of a capstone project for Deloitte AAM. The project involved utilizing analytics and machine learning to model fatal auto accident propensity. This webapp aims to provide insight on fatal accident densities by interfacing with public Google API's&lt;/p&gt;</description><link>http://localhost:2368/untitled/</link><guid isPermaLink="false">4e2bce9d-d98c-4f86-bf4a-c340ab0447f7</guid><dc:creator>Jacob Quinn</dc:creator><pubDate>Fri, 28 Oct 2016 04:27:19 GMT</pubDate><content:encoded>&lt;h1 id="deloitteaamfarscapstoneproject"&gt;Deloitte AAM FARS Capstone Project&lt;/h1&gt;
 
-&lt;p&gt;Writing in Markdown is really easy. In the left hand panel of Ghost, you simply write as you normally would. Where appropriate, you can use &lt;em&gt;shortcuts&lt;/em&gt; to &lt;strong&gt;style&lt;/strong&gt; your content. For example, a list:&lt;/p&gt;
+&lt;h4 id="background"&gt;Background&lt;/h4&gt;
+
+&lt;p&gt;This &lt;a href="http://quinnj.github.io/heatmap.html"&gt;webapp&lt;/a&gt; was put together as apart of a capstone project for Deloitte AAM. The project involved utilizing analytics and machine learning to model fatal auto accident propensity. This webapp aims to provide insight on fatal accident densities by interfacing with public Google API's combined with the FARS dataset.&lt;/p&gt;
+
+&lt;h4 id="usage"&gt;Usage&lt;/h4&gt;
+
+&lt;h6 id="navigationapp"&gt;Navigation App&lt;/h6&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Item number one&lt;/li&gt;
-&lt;li&gt;Item number two
-&lt;ul&gt;&lt;li&gt;A nested item&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;A final item&lt;/li&gt;
+&lt;li&gt;Enter a starting and ending location&lt;/li&gt;
+&lt;li&gt;Select time of day or weather filters&lt;/li&gt;
+&lt;li&gt;Push the &lt;code&gt;Go!&lt;/code&gt; button&lt;/li&gt;
+&lt;li&gt;Select time of day or weather filters to view differences&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;or with numbers!&lt;/p&gt;
+&lt;h6 id="10mileradiusapp"&gt;10-Mile Radius App&lt;/h6&gt;
 
-&lt;ol&gt;
-&lt;li&gt;Remember to buy some milk  &lt;/li&gt;
-&lt;li&gt;Drink the milk  &lt;/li&gt;
-&lt;li&gt;Tweet that I remembered to buy the milk, and drank it&lt;/li&gt;
-&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Enter a location&lt;/li&gt;
+&lt;li&gt;Push the &lt;code&gt;Go!&lt;/code&gt; button&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h3 id="links"&gt;Links&lt;/h3&gt;
+&lt;h4 id="howitworks"&gt;How It Works&lt;/h4&gt;
 
-&lt;p&gt;Want to link to a source? No problem. If you paste in a URL, like &lt;a href="http://ghost.org"&gt;http://ghost.org&lt;/a&gt; - it'll automatically be linked up. But if you want to customise your anchor text, you can do that too! Here's a link to &lt;a href="http://ghost.org"&gt;the Ghost website&lt;/a&gt;. Neat.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;strong&gt;Navigation&lt;/strong&gt; app queries the &lt;a href="https://developers.google.com/maps/documentation/directions/"&gt;Google Directions API&lt;/a&gt; to obtain the 1-3 recommended routes from point A to point B; the &lt;strong&gt;10-Mile Radius&lt;/strong&gt; app calculates the latitude and longitude bounds on the map after centering it on the entered location&lt;/li&gt;
+&lt;li&gt;With the recommended routes, the FARS dataset of fatal auto accidents is processed to identify accidents that occurred along each route that satisfy any time of day or weather filters&lt;/li&gt;
+&lt;li&gt;The applicable accidents are plotted along the navigation routes or in the 10-mile bounding box by utilizing the &lt;a href="https://developers.google.com/maps/documentation/javascript/heatmaplayer"&gt;Google Heatmap Layer API&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h3 id="whataboutimages"&gt;What about Images?&lt;/h3&gt;
+&lt;h4 id="definitions"&gt;Definitions&lt;/h4&gt;
 
-&lt;p&gt;Images work too! Already know the URL of the image you want to include in your article? Simply paste it in like this to make it show up:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Data source is the government-provided FARS data set of fatal auto accidents released each year. Data includes attributes of accidents and vehicles and people involved. (&lt;a href="http://www.nhtsa.gov/FARS"&gt;http://www.nhtsa.gov/FARS&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Any Time&lt;/code&gt;: Show fatal accidents that occurred at any time of day&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Morning&lt;/code&gt;: Show fatal accidents that occurred between 4 AM and 12 PM&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Afternoon&lt;/code&gt;: Show fatal accidents that occurred between 12 PM and 7 PM&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Night&lt;/code&gt;: Show fatal accidents that occurred between 7 PM and 4 AM&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Any Weather&lt;/code&gt;: Show fatal accidents that occurred under any weather condition&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Clear&lt;/code&gt;: Show fatal accidents that occurred under clear weather conditions&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Adverse&lt;/code&gt;: Show fatal accidents that occurred under adverse weather conditions, including rain, snow, sleet, hail, severe wind, and fog.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title>Data Structures as Code: The Joys of Meta-Programming</title><description>&lt;h1 id="datastructuresascodethejoysofmetaprogramming"&gt;Data Structures as Code: The Joys of Meta-Programming&lt;/h1&gt;
 
-&lt;p&gt;&lt;img src="https://ghost.org/images/ghost.png" alt="The Ghost Logo"&gt;&lt;/p&gt;
+&lt;p&gt;While working on a major &lt;a href="https://github.com/quinnj/Dates.jl"&gt;rewrite&lt;/a&gt; of the &lt;a href="https://github.com/quinnj/Datetime.jl"&gt;Datetime&lt;/a&gt; Julia library for Dates and DateTimes, increased performance was a key goal. And though the original implementation was already fast, Julia developers tend to be &lt;a href="http://julialang.org/blog/2012/02/why-we-created-julia/"&gt;greedy&lt;/a&gt;, so naturally I wanted more.&lt;/p&gt;
 
-&lt;p&gt;Not sure which image you want to use yet? That's ok too. Leave yourself a descriptive placeholder and keep writing. Come back later and drag and drop the image in to upload:&lt;/p&gt;
+&lt;p&gt;One of&lt;/p&gt;</description><link>http://localhost:2368/welcome-to-ghost/</link><guid isPermaLink="false">5851b994-3c73-43a4-a100-9bcbef374604</guid><category>Getting Started</category><dc:creator>Jacob Quinn</dc:creator><pubDate>Fri, 28 Oct 2016 04:10:03 GMT</pubDate><content:encoded>&lt;h1 id="datastructuresascodethejoysofmetaprogramming"&gt;Data Structures as Code: The Joys of Meta-Programming&lt;/h1&gt;
 
-&lt;h3 id="quoting"&gt;Quoting&lt;/h3&gt;
+&lt;p&gt;While working on a major &lt;a href="https://github.com/quinnj/Dates.jl"&gt;rewrite&lt;/a&gt; of the &lt;a href="https://github.com/quinnj/Datetime.jl"&gt;Datetime&lt;/a&gt; Julia library for Dates and DateTimes, increased performance was a key goal. And though the original implementation was already fast, Julia developers tend to be &lt;a href="http://julialang.org/blog/2012/02/why-we-created-julia/"&gt;greedy&lt;/a&gt;, so naturally I wanted more.&lt;/p&gt;
 
-&lt;p&gt;Sometimes a link isn't enough, you want to quote someone on what they've said. Perhaps you've started using a new blogging platform and feel the sudden urge to share their slogan? A quote might be just the way to do it!&lt;/p&gt;
+&lt;p&gt;One of the known bottlenecks at the time, was how &lt;a href="http://en.wikipedia.org/wiki/Leap_second"&gt;leap seconds&lt;/a&gt; were being dealt with. The &lt;code&gt;DateTime&lt;/code&gt; type accounted for leap seconds like any other second, and naturally this complicated the internals a bit. See, the internal type is just stored as a &lt;em&gt;machine instant&lt;/em&gt;, a monotonically increasing number from zero.&lt;/p&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;Ghost - Just a blogging platform&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;julia&amp;gt; dt = datetime(2014,6,19)  
+2014-06-19T00:00:00 UTC
 
-&lt;h3 id="workingwithcode"&gt;Working with Code&lt;/h3&gt;
-
-&lt;p&gt;Got a streak of geek? We've got you covered there, too. You can write inline &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; blocks really easily with back ticks. Want to show off something more comprehensive? 4 spaces of indentation gets you there.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;.awesome-thing {
-    display: block;
-    width: 100%;
-}
+julia&amp;gt; int(dt)  
+63538819225000  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id="readyforabreak"&gt;Ready for a Break?&lt;/h3&gt;
+&lt;p&gt;So the tricky part, comes in the algorithm to calculate this machine instant given the parts of a date (year, month, day, etc.). In a leap-seconds-don't-exist kind of world, this is trivial:&lt;/p&gt;
 
-&lt;p&gt;Throw 3 or more dashes down on any new line and you've got yourself a fancy new divider. Aw yeah.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;totalms = ms + 1000*(s + 60mi + 3600h + 86400*totaldays(y,m,d))  
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;hr&gt;
+&lt;p&gt;The hard part, is when trying to convert the above into leap-seconds-&lt;em&gt;do&lt;/em&gt;-exist world.&lt;/p&gt;
 
-&lt;h3 id="advancedusage"&gt;Advanced Usage&lt;/h3&gt;
+&lt;p&gt;Without going into too much detail, the solution basically involves using two cached arrays, one in the leap second timeline specifying the instant a leap second occurred; while the other is on a non-leap second timeline specifying the instant right before a leap second would occur (yes, it totally makes me think of &lt;a href="http://en.wikipedia.org/wiki/Remedial_Chaos_Theory"&gt;alternate timelines&lt;/a&gt;).&lt;/p&gt;
 
-&lt;p&gt;There's one fantastic secret about Markdown. If you want, you can write plain old HTML and it'll still work! Very flexible.&lt;/p&gt;
+&lt;p&gt;The bottleneck problem boils down to the fact that every time you create or show a &lt;code&gt;DateTime&lt;/code&gt;, you have to do a lookup into these leap second arrays to figure out how many leap seconds need to be corrected in either setting the machine instant, or displaying the right date parts.&lt;/p&gt;
 
-&lt;p&gt;&lt;input type="text" placeholder="I'm an input field!"&gt;&lt;/p&gt;
+&lt;p&gt;The natural thing here is to employ binary search, which Base Julia provides an excellent implmentation of in the &lt;a href="http://docs.julialang.org/en/latest/stdlib/sort/#Base.searchsorted"&gt;searchsorted&lt;/a&gt; family of functions. Basically, we calculate our &lt;code&gt;totalms&lt;/code&gt; from above, then do binary search to figure out when the previous leap second instant occured and how many leap seconds it represents and need to be corrected for our calculated instant (in this case, we could use the &lt;code&gt;searchsortedlast&lt;/code&gt; function to get the last leap second instant before our calculated instant). Simple enough, right? End of story? Move on?&lt;/p&gt;
 
-&lt;p&gt;That should be enough to get you started. Have fun - and let us know what you think :)&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;But let's step back a minute and think about the nature of the problem. A major insight is the fact that our leap second arrays are static--nothing is being added or removed apart from library releases and when the &lt;a href="http://www.iers.org/"&gt;IERS&lt;/a&gt; decides things are getting too out of whack with earth's rotation. So how could we use this knowledge to improve performance? Well, if we take our &lt;code&gt;searchsortedlast&lt;/code&gt; binary search to the extreme, it would ideally look like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;const LEAPSECONDS = [...]  
+function setleaps(totalms)  
+    if totalms &amp;lt; 62624707200000  # our middle value of LEAPSECONDS
+        if totalms &amp;lt; 62388144000000 # cut 1st half in half again
+            if totalms &amp;lt; 62230377600000 # last cut needed
+                return 1  # only one leap second has occured
+            else
+                return 2  # 2 leap seconds
+            end
+        else
+        ...
+    else
+    ...
+end  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Basically, a hand-written &lt;code&gt;searchsortedlast&lt;/code&gt; binary search tree using our static array values that elimates all recursive/function call overhead and is close to the metal. But who wants to write all that out by hand? And when our leap second arrays &lt;em&gt;do&lt;/em&gt; get updated, we'll have to manually rebalance our tree, and hand-write it all over again.....yuck. But wait, I seem to recall a famous &lt;a href="https://github.com/JuliaLang/julia/pull/2987"&gt;PR&lt;/a&gt; by &lt;a href="http://math.mit.edu/~stevenj/"&gt;Steven Johnson&lt;/a&gt; where he used a macro for hand-unrolling array coefficients that other libraries wouldn't dream of trying to maintain. Perhaps we too can leverage Julia's meta-programming capabilities to do our dirty work.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Recursively build binary search tree w/ known lookup values
+# A is sorted array of lookup values
+# R is return values for each index of A
+# i.e. R[1] is returned for values &amp;lt; A[1], R[2] for &amp;lt; A[2], etc.
+function searchsortedlasttree(A,R,var_name)  
+    l = length(A)
+    mid = iseven(l) ? l&amp;gt;&amp;gt;&amp;gt;1 : (l&amp;gt;&amp;gt;&amp;gt;1)+1
+    # Handle base case
+    if mid == 1
+        if l == 1
+            return :($var_name &amp;lt; $(A[1]) ? $(R[1]) : $(R[2]))
+        else # l == 2
+            return :($var_name &amp;lt; $(A[1]) ? $(R[1]) : 
+                     $var_name &amp;lt; $(A[2]) ? $(R[2]) : $(R[3]))
+        end
+    end
+    iftree = Expr(:if)
+    iftree.args = Array(Any,3)
+    iftree.args[1] = :($var_name &amp;lt; $(A[mid])) # condition
+    iftree.args[2] = searchsortedlasttree(A[1:mid-1],R[1:mid],var_name)
+    iftree.args[3] = searchsortedlasttree(A[mid+1:end],R[mid+1:end],var_name)
+    return iftree
+end
+
+macro leapstree(a,r,var_name)  
+    # var_name is the variable name that will be passed in thru the parent function
+    A = eval(a)  # safe to eval here because 'a' is known at compile time
+    R = eval(r)  # same here
+    ret = Expr(:block)  # we'll store everything in a big block expression
+    # First we manually handle before and after the ends of our leaps array
+    push!(ret.args,:($var_name &amp;lt; $(A[1]) &amp;amp;&amp;amp; return 0))
+    push!(ret.args,:($var_name &amp;gt;= $(A[end]) &amp;amp;&amp;amp; return $(endof(A)*1000)))
+    # Now we call the recursive searchsortedlasttree to get the rest
+    push!(ret.args,searchsortedlasttree(A[2:(endof(A)-1)],R,var_name))
+    return ret
+end
+
+const SETLEAPS = [62214480000000,62230377600000,62261913600000, 62293449600000,62324985600000,62356608000000,62388144000000, 62419680000000,62451216000000,62498476800000,62530012800000, 62561548800000,62624707200000,62703676800000,62766835200000, 62798371200000,62845632000000,62877168000000,62908704000000, 62956137600000,63003398400000,63050832000000,63271756800000, 63366451200000,63476784000000]
+
+function setleaps(ms)  
+    # @leapstree as a macro ensures everything gets expanded
+    # at compile time
+    @leapstree(SETLEAPS,[1000:1000:((endof(SETLEAPS)-1)*1000)],ms)
+end  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I tried to add useful comments so you can follow what's going on above, but basically we have our &lt;code&gt;setleaps&lt;/code&gt; function that will determine how many leap seconds need to be corrected given a &lt;code&gt;totalms&lt;/code&gt; value. &lt;code&gt;setleaps&lt;/code&gt; is built at compile time by expanding the macro &lt;code&gt;leapstree&lt;/code&gt; which manually builds a binary search tree given the &lt;code&gt;SETLEAPS&lt;/code&gt; array of leap second instants and the return values for each slot. The binary search tree is built primarily by &lt;code&gt;searchsortedlasttree&lt;/code&gt;, which is similar to the &lt;a href="https://github.com/JuliaLang/julia/blob/master/base/sort.jl#L144"&gt;searchsortedlast&lt;/a&gt; implementation, except instead of returning &lt;em&gt;values&lt;/em&gt;, it returns &lt;em&gt;expressions&lt;/em&gt;. It is also built recursively to handle any depth of tree.&lt;/p&gt;
+
+&lt;p&gt;Hmmm....seems like a bit of hassle, does it really improve things much? Well, for one thing, the above code is &lt;em&gt;robust&lt;/em&gt;, I've written it once and don't have to do anything more except tack on the next leap second to &lt;code&gt;SETLEAPS&lt;/code&gt; the next time one is announced. Our manually built binary search tree will be rebalanced automatically. What about performance?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;julia&amp;gt; @time [searchsortedlast(SETLEAPS, 63366451200000) for i = 1:10000000];  
+elapsed time: 0.50351136 seconds (80000048 bytes allocated)
+
+julia&amp;gt; @time [setleaps(63366451200000) for i = 1:10000000];  
+elapsed time: 0.067922885 seconds (80000048 bytes allocated)  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Boom! Almost 10x!&lt;/p&gt;
+
+&lt;p&gt;Anyway, I thought this was an interesting application of meta-programming in Julia where we're basically taking static data and generating an operation on a data structure in the code itself. A &lt;a href="https://groups.google.com/forum/#!searchin/julia-users/long-term/julia-users/9MDGStifKy8/IqSzaG2wxk4J"&gt;recent thread&lt;/a&gt; in the Julia-Users forum asked about the long-term hopes of Julia achieving true C/Fortran performance (currently usually 1.2-2x). I think another strong point to the argument of Julia vs. C/Fortran is what I've shown above. Powerful language design choices like strong meta-programming functionality allows you to do things in Julia that would be almost impossible in many other languages, &lt;em&gt;but that also allow for unique performance gains&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned for more adventures in Julia land and maybe for my next post, I'll talk a little more about Julia's code introspection tools and how they can be so darn handy while developing. As a teaser, here's the generated code for our &lt;code&gt;setleaps&lt;/code&gt; method above:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;In  [62]: @code_lowered setleaps(62561548800000)
+
+Out [62]: 1-element Array{Any,1}:  
+ :($(Expr(:lambda, {:ms}, {{},{{:ms,:Any,0}},{}}, :(begin  # In[30], line 43:
+        unless ms &amp;lt; 62214480000000 goto 0
+        return 0
+        0: 
+        unless ms &amp;gt;= 63476784000000 goto 1
+        return 25000
+        1: 
+        unless ms &amp;lt; 62624707200000 goto 15
+        unless ms &amp;lt; 62388144000000 goto 8
+        unless ms &amp;lt; 62293449600000 goto 4
+        unless ms &amp;lt; 62230377600000 goto 2
+        return 1000
+        2: 
+        unless ms &amp;lt; 62261913600000 goto 3
+        return 2000
+        3: 
+        return 3000
+        goto 7
+        4: 
+        unless ms &amp;lt; 62324985600000 goto 5
+        return 4000
+        5: 
+        unless ms &amp;lt; 62356608000000 goto 6
+        return 5000
+        6: 
+        return 6000
+        7: 
+        goto 14
+        8: 
+        unless ms &amp;lt; 62498476800000 goto 11
+        unless ms &amp;lt; 62419680000000 goto 9
+        return 7000
+        9: 
+        unless ms &amp;lt; 62451216000000 goto 10
+        return 8000
+        10: 
+        return 9000
+        goto 14
+        11: 
+        unless ms &amp;lt; 62530012800000 goto 12
+        return 10000
+        12: 
+        unless ms &amp;lt; 62561548800000 goto 13
+        return 11000
+        13: 
+        return 12000
+        14: 
+        goto 28
+        15: 
+        unless ms &amp;lt; 62908704000000 goto 22
+        unless ms &amp;lt; 62798371200000 goto 18
+        unless ms &amp;lt; 62703676800000 goto 16
+        return 13000
+        16: 
+        unless ms &amp;lt; 62766835200000 goto 17
+        return 14000
+        17: 
+        return 15000
+        goto 21
+        18: 
+        unless ms &amp;lt; 62845632000000 goto 19
+        return 16000
+        19: 
+        unless ms &amp;lt; 62877168000000 goto 20
+        return 17000
+        20: 
+        return 18000
+        21: 
+        goto 28
+        22: 
+        unless ms &amp;lt; 63050832000000 goto 25
+        unless ms &amp;lt; 62956137600000 goto 23
+        return 19000
+        23: 
+        unless ms &amp;lt; 63003398400000 goto 24
+        return 20000
+        24: 
+        return 21000
+        goto 28
+        25: 
+        unless ms &amp;lt; 63271756800000 goto 26
+        return 22000
+        26: 
+        unless ms &amp;lt; 63366451200000 goto 27
+        return 23000
+        27: 
+        return 24000
+        28: 
+    end))))
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item></channel></rss>

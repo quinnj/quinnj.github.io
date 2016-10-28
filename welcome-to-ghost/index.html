@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Welcome to Ghost</title>
+    <title>Data Structures as Code: The Joys of Meta-Programming</title>
     <meta name="description" content="">
 
     <meta name="HandheldFriendly" content="True">
@@ -20,16 +20,16 @@
     
     <meta property="og:site_name" content="Du Traitement des Données">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Welcome to Ghost">
-    <meta property="og:description" content="You're live! Nice. We've put together a little post to introduce you to the Ghost editor and get you started. You can manage your content by signing in to the admin area at &amp;lt;your blog URL&amp;gt;/ghost/. When you arrive, you can select this post from a list">
+    <meta property="og:title" content="Data Structures as Code: The Joys of Meta-Programming">
+    <meta property="og:description" content="Data Structures as Code: The Joys of Meta-Programming While working on a major rewrite of the Datetime Julia library for Dates and DateTimes, increased performance was a key goal. And though the original implementation was already fast, Julia developers tend to be greedy, so naturally I wanted more. One of">
     <meta property="og:url" content="http://localhost:2368/welcome-to-ghost/">
     <meta property="article:published_time" content="2016-10-28T04:10:03.000Z">
-    <meta property="article:modified_time" content="2016-10-28T04:10:03.000Z">
+    <meta property="article:modified_time" content="2016-10-28T04:25:44.000Z">
     <meta property="article:tag" content="Getting Started">
     
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Welcome to Ghost">
-    <meta name="twitter:description" content="You're live! Nice. We've put together a little post to introduce you to the Ghost editor and get you started. You can manage your content by signing in to the admin area at &amp;lt;your blog URL&amp;gt;/ghost/. When you arrive, you can select this post from a list">
+    <meta name="twitter:title" content="Data Structures as Code: The Joys of Meta-Programming">
+    <meta name="twitter:description" content="Data Structures as Code: The Joys of Meta-Programming While working on a major rewrite of the Datetime Julia library for Dates and DateTimes, increased performance was a key goal. And though the original implementation was already fast, Julia developers tend to be greedy, so naturally I wanted more. One of">
     <meta name="twitter:url" content="http://localhost:2368/welcome-to-ghost/">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="Jacob Quinn">
@@ -57,12 +57,12 @@
         "url": "http://localhost:2368/author/jacob/",
         "sameAs": []
     },
-    "headline": "Welcome to Ghost",
+    "headline": "Data Structures as Code: The Joys of Meta-Programming",
     "url": "http://localhost:2368/welcome-to-ghost/",
     "datePublished": "2016-10-28T04:10:03.000Z",
-    "dateModified": "2016-10-28T04:10:03.000Z",
+    "dateModified": "2016-10-28T04:25:44.000Z",
     "keywords": "Getting Started",
-    "description": "You&#x27;re live! Nice. We&#x27;ve put together a little post to introduce you to the Ghost editor and get you started. You can manage your content by signing in to the admin area at &amp;lt;your blog URL&amp;gt;/ghost/. When you arrive, you can select this post from a list",
+    "description": "Data Structures as Code: The Joys of Meta-Programming While working on a major rewrite of the Datetime Julia library for Dates and DateTimes, increased performance was a key goal. And though the original implementation was already fast, Julia developers tend to be greedy, so naturally I wanted more. One of",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "http://localhost:2368"
@@ -104,79 +104,215 @@
     <article class="post tag-getting-started">
 
         <header class="post-header">
-            <h1 class="post-title">Welcome to Ghost</h1>
+            <h1 class="post-title">Data Structures as Code: The Joys of Meta-Programming</h1>
             <section class="post-meta">
                 <time class="post-date" datetime="2016-10-28">28 October 2016</time>  on <a href="../tag/getting-started/">Getting Started</a>
             </section>
         </header>
 
         <section class="post-content">
-            <p>You're live! Nice. We've put together a little post to introduce you to the Ghost editor and get you started. You can manage your content by signing in to the admin area at <code>&lt;your blog URL&gt;/ghost/</code>. When you arrive, you can select this post from a list on the left and see a preview of it on the right. Click the little pencil icon at the top of the preview to edit this post and read the next section!</p>
+            <h1 id="datastructuresascodethejoysofmetaprogramming">Data Structures as Code: The Joys of Meta-Programming</h1>
 
-<h2 id="gettingstarted">Getting Started</h2>
+<p>While working on a major <a href="https://github.com/quinnj/Dates.jl">rewrite</a> of the <a href="https://github.com/quinnj/Datetime.jl">Datetime</a> Julia library for Dates and DateTimes, increased performance was a key goal. And though the original implementation was already fast, Julia developers tend to be <a href="http://julialang.org/blog/2012/02/why-we-created-julia/">greedy</a>, so naturally I wanted more.</p>
 
-<p>Ghost uses something called Markdown for writing. Essentially, it's a shorthand way to manage your post formatting as you write!</p>
+<p>One of the known bottlenecks at the time, was how <a href="http://en.wikipedia.org/wiki/Leap_second">leap seconds</a> were being dealt with. The <code>DateTime</code> type accounted for leap seconds like any other second, and naturally this complicated the internals a bit. See, the internal type is just stored as a <em>machine instant</em>, a monotonically increasing number from zero.</p>
 
-<p>Writing in Markdown is really easy. In the left hand panel of Ghost, you simply write as you normally would. Where appropriate, you can use <em>shortcuts</em> to <strong>style</strong> your content. For example, a list:</p>
+<pre><code>julia&gt; dt = datetime(2014,6,19)  
+2014-06-19T00:00:00 UTC
 
-<ul>
-<li>Item number one</li>
-<li>Item number two
-<ul><li>A nested item</li></ul></li>
-<li>A final item</li>
-</ul>
-
-<p>or with numbers!</p>
-
-<ol>
-<li>Remember to buy some milk  </li>
-<li>Drink the milk  </li>
-<li>Tweet that I remembered to buy the milk, and drank it</li>
-</ol>
-
-<h3 id="links">Links</h3>
-
-<p>Want to link to a source? No problem. If you paste in a URL, like <a href="http://ghost.org">http://ghost.org</a> - it'll automatically be linked up. But if you want to customise your anchor text, you can do that too! Here's a link to <a href="http://ghost.org">the Ghost website</a>. Neat.</p>
-
-<h3 id="whataboutimages">What about Images?</h3>
-
-<p>Images work too! Already know the URL of the image you want to include in your article? Simply paste it in like this to make it show up:</p>
-
-<p><img src="https://ghost.org/images/ghost.png" alt="The Ghost Logo"></p>
-
-<p>Not sure which image you want to use yet? That's ok too. Leave yourself a descriptive placeholder and keep writing. Come back later and drag and drop the image in to upload:</p>
-
-<h3 id="quoting">Quoting</h3>
-
-<p>Sometimes a link isn't enough, you want to quote someone on what they've said. Perhaps you've started using a new blogging platform and feel the sudden urge to share their slogan? A quote might be just the way to do it!</p>
-
-<blockquote>
-  <p>Ghost - Just a blogging platform</p>
-</blockquote>
-
-<h3 id="workingwithcode">Working with Code</h3>
-
-<p>Got a streak of geek? We've got you covered there, too. You can write inline <code>&lt;code&gt;</code> blocks really easily with back ticks. Want to show off something more comprehensive? 4 spaces of indentation gets you there.</p>
-
-<pre><code>.awesome-thing {
-    display: block;
-    width: 100%;
-}
+julia&gt; int(dt)  
+63538819225000  
 </code></pre>
 
-<h3 id="readyforabreak">Ready for a Break?</h3>
+<p>So the tricky part, comes in the algorithm to calculate this machine instant given the parts of a date (year, month, day, etc.). In a leap-seconds-don't-exist kind of world, this is trivial:</p>
 
-<p>Throw 3 or more dashes down on any new line and you've got yourself a fancy new divider. Aw yeah.</p>
+<pre><code>totalms = ms + 1000*(s + 60mi + 3600h + 86400*totaldays(y,m,d))  
+</code></pre>
 
-<hr>
+<p>The hard part, is when trying to convert the above into leap-seconds-<em>do</em>-exist world.</p>
 
-<h3 id="advancedusage">Advanced Usage</h3>
+<p>Without going into too much detail, the solution basically involves using two cached arrays, one in the leap second timeline specifying the instant a leap second occurred; while the other is on a non-leap second timeline specifying the instant right before a leap second would occur (yes, it totally makes me think of <a href="http://en.wikipedia.org/wiki/Remedial_Chaos_Theory">alternate timelines</a>).</p>
 
-<p>There's one fantastic secret about Markdown. If you want, you can write plain old HTML and it'll still work! Very flexible.</p>
+<p>The bottleneck problem boils down to the fact that every time you create or show a <code>DateTime</code>, you have to do a lookup into these leap second arrays to figure out how many leap seconds need to be corrected in either setting the machine instant, or displaying the right date parts.</p>
 
-<p><input type="text" placeholder="I'm an input field!"></p>
+<p>The natural thing here is to employ binary search, which Base Julia provides an excellent implmentation of in the <a href="http://docs.julialang.org/en/latest/stdlib/sort/#Base.searchsorted">searchsorted</a> family of functions. Basically, we calculate our <code>totalms</code> from above, then do binary search to figure out when the previous leap second instant occured and how many leap seconds it represents and need to be corrected for our calculated instant (in this case, we could use the <code>searchsortedlast</code> function to get the last leap second instant before our calculated instant). Simple enough, right? End of story? Move on?</p>
 
-<p>That should be enough to get you started. Have fun - and let us know what you think :)</p>
+<p>But let's step back a minute and think about the nature of the problem. A major insight is the fact that our leap second arrays are static--nothing is being added or removed apart from library releases and when the <a href="http://www.iers.org/">IERS</a> decides things are getting too out of whack with earth's rotation. So how could we use this knowledge to improve performance? Well, if we take our <code>searchsortedlast</code> binary search to the extreme, it would ideally look like:</p>
+
+<pre><code>const LEAPSECONDS = [...]  
+function setleaps(totalms)  
+    if totalms &lt; 62624707200000  # our middle value of LEAPSECONDS
+        if totalms &lt; 62388144000000 # cut 1st half in half again
+            if totalms &lt; 62230377600000 # last cut needed
+                return 1  # only one leap second has occured
+            else
+                return 2  # 2 leap seconds
+            end
+        else
+        ...
+    else
+    ...
+end  
+</code></pre>
+
+<p>Basically, a hand-written <code>searchsortedlast</code> binary search tree using our static array values that elimates all recursive/function call overhead and is close to the metal. But who wants to write all that out by hand? And when our leap second arrays <em>do</em> get updated, we'll have to manually rebalance our tree, and hand-write it all over again.....yuck. But wait, I seem to recall a famous <a href="https://github.com/JuliaLang/julia/pull/2987">PR</a> by <a href="http://math.mit.edu/~stevenj/">Steven Johnson</a> where he used a macro for hand-unrolling array coefficients that other libraries wouldn't dream of trying to maintain. Perhaps we too can leverage Julia's meta-programming capabilities to do our dirty work.</p>
+
+<pre><code># Recursively build binary search tree w/ known lookup values
+# A is sorted array of lookup values
+# R is return values for each index of A
+# i.e. R[1] is returned for values &lt; A[1], R[2] for &lt; A[2], etc.
+function searchsortedlasttree(A,R,var_name)  
+    l = length(A)
+    mid = iseven(l) ? l&gt;&gt;&gt;1 : (l&gt;&gt;&gt;1)+1
+    # Handle base case
+    if mid == 1
+        if l == 1
+            return :($var_name &lt; $(A[1]) ? $(R[1]) : $(R[2]))
+        else # l == 2
+            return :($var_name &lt; $(A[1]) ? $(R[1]) : 
+                     $var_name &lt; $(A[2]) ? $(R[2]) : $(R[3]))
+        end
+    end
+    iftree = Expr(:if)
+    iftree.args = Array(Any,3)
+    iftree.args[1] = :($var_name &lt; $(A[mid])) # condition
+    iftree.args[2] = searchsortedlasttree(A[1:mid-1],R[1:mid],var_name)
+    iftree.args[3] = searchsortedlasttree(A[mid+1:end],R[mid+1:end],var_name)
+    return iftree
+end
+
+macro leapstree(a,r,var_name)  
+    # var_name is the variable name that will be passed in thru the parent function
+    A = eval(a)  # safe to eval here because 'a' is known at compile time
+    R = eval(r)  # same here
+    ret = Expr(:block)  # we'll store everything in a big block expression
+    # First we manually handle before and after the ends of our leaps array
+    push!(ret.args,:($var_name &lt; $(A[1]) &amp;&amp; return 0))
+    push!(ret.args,:($var_name &gt;= $(A[end]) &amp;&amp; return $(endof(A)*1000)))
+    # Now we call the recursive searchsortedlasttree to get the rest
+    push!(ret.args,searchsortedlasttree(A[2:(endof(A)-1)],R,var_name))
+    return ret
+end
+
+const SETLEAPS = [62214480000000,62230377600000,62261913600000, 62293449600000,62324985600000,62356608000000,62388144000000, 62419680000000,62451216000000,62498476800000,62530012800000, 62561548800000,62624707200000,62703676800000,62766835200000, 62798371200000,62845632000000,62877168000000,62908704000000, 62956137600000,63003398400000,63050832000000,63271756800000, 63366451200000,63476784000000]
+
+function setleaps(ms)  
+    # @leapstree as a macro ensures everything gets expanded
+    # at compile time
+    @leapstree(SETLEAPS,[1000:1000:((endof(SETLEAPS)-1)*1000)],ms)
+end  
+</code></pre>
+
+<p>I tried to add useful comments so you can follow what's going on above, but basically we have our <code>setleaps</code> function that will determine how many leap seconds need to be corrected given a <code>totalms</code> value. <code>setleaps</code> is built at compile time by expanding the macro <code>leapstree</code> which manually builds a binary search tree given the <code>SETLEAPS</code> array of leap second instants and the return values for each slot. The binary search tree is built primarily by <code>searchsortedlasttree</code>, which is similar to the <a href="https://github.com/JuliaLang/julia/blob/master/base/sort.jl#L144">searchsortedlast</a> implementation, except instead of returning <em>values</em>, it returns <em>expressions</em>. It is also built recursively to handle any depth of tree.</p>
+
+<p>Hmmm....seems like a bit of hassle, does it really improve things much? Well, for one thing, the above code is <em>robust</em>, I've written it once and don't have to do anything more except tack on the next leap second to <code>SETLEAPS</code> the next time one is announced. Our manually built binary search tree will be rebalanced automatically. What about performance?</p>
+
+<pre><code>julia&gt; @time [searchsortedlast(SETLEAPS, 63366451200000) for i = 1:10000000];  
+elapsed time: 0.50351136 seconds (80000048 bytes allocated)
+
+julia&gt; @time [setleaps(63366451200000) for i = 1:10000000];  
+elapsed time: 0.067922885 seconds (80000048 bytes allocated)  
+</code></pre>
+
+<p>Boom! Almost 10x!</p>
+
+<p>Anyway, I thought this was an interesting application of meta-programming in Julia where we're basically taking static data and generating an operation on a data structure in the code itself. A <a href="https://groups.google.com/forum/#!searchin/julia-users/long-term/julia-users/9MDGStifKy8/IqSzaG2wxk4J">recent thread</a> in the Julia-Users forum asked about the long-term hopes of Julia achieving true C/Fortran performance (currently usually 1.2-2x). I think another strong point to the argument of Julia vs. C/Fortran is what I've shown above. Powerful language design choices like strong meta-programming functionality allows you to do things in Julia that would be almost impossible in many other languages, <em>but that also allow for unique performance gains</em>.</p>
+
+<p>Stay tuned for more adventures in Julia land and maybe for my next post, I'll talk a little more about Julia's code introspection tools and how they can be so darn handy while developing. As a teaser, here's the generated code for our <code>setleaps</code> method above:</p>
+
+<pre><code>In  [62]: @code_lowered setleaps(62561548800000)
+
+Out [62]: 1-element Array{Any,1}:  
+ :($(Expr(:lambda, {:ms}, {{},{{:ms,:Any,0}},{}}, :(begin  # In[30], line 43:
+        unless ms &lt; 62214480000000 goto 0
+        return 0
+        0: 
+        unless ms &gt;= 63476784000000 goto 1
+        return 25000
+        1: 
+        unless ms &lt; 62624707200000 goto 15
+        unless ms &lt; 62388144000000 goto 8
+        unless ms &lt; 62293449600000 goto 4
+        unless ms &lt; 62230377600000 goto 2
+        return 1000
+        2: 
+        unless ms &lt; 62261913600000 goto 3
+        return 2000
+        3: 
+        return 3000
+        goto 7
+        4: 
+        unless ms &lt; 62324985600000 goto 5
+        return 4000
+        5: 
+        unless ms &lt; 62356608000000 goto 6
+        return 5000
+        6: 
+        return 6000
+        7: 
+        goto 14
+        8: 
+        unless ms &lt; 62498476800000 goto 11
+        unless ms &lt; 62419680000000 goto 9
+        return 7000
+        9: 
+        unless ms &lt; 62451216000000 goto 10
+        return 8000
+        10: 
+        return 9000
+        goto 14
+        11: 
+        unless ms &lt; 62530012800000 goto 12
+        return 10000
+        12: 
+        unless ms &lt; 62561548800000 goto 13
+        return 11000
+        13: 
+        return 12000
+        14: 
+        goto 28
+        15: 
+        unless ms &lt; 62908704000000 goto 22
+        unless ms &lt; 62798371200000 goto 18
+        unless ms &lt; 62703676800000 goto 16
+        return 13000
+        16: 
+        unless ms &lt; 62766835200000 goto 17
+        return 14000
+        17: 
+        return 15000
+        goto 21
+        18: 
+        unless ms &lt; 62845632000000 goto 19
+        return 16000
+        19: 
+        unless ms &lt; 62877168000000 goto 20
+        return 17000
+        20: 
+        return 18000
+        21: 
+        goto 28
+        22: 
+        unless ms &lt; 63050832000000 goto 25
+        unless ms &lt; 62956137600000 goto 23
+        return 19000
+        23: 
+        unless ms &lt; 63003398400000 goto 24
+        return 20000
+        24: 
+        return 21000
+        goto 28
+        25: 
+        unless ms &lt; 63271756800000 goto 26
+        return 22000
+        26: 
+        unless ms &lt; 63366451200000 goto 27
+        return 23000
+        27: 
+        return 24000
+        28: 
+    end))))
+</code></pre>
         </section>
 
         <footer class="post-footer">
@@ -199,7 +335,7 @@
 
             <section class="share">
                 <h4>Share this post</h4>
-                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Welcome%20to%20Ghost&amp;url=http://localhost:2368/welcome-to-ghost/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=Data%20Structures%20as%20Code%3A%20The%20Joys%20of%20Meta-Programming&amp;url=http://localhost:2368/welcome-to-ghost/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                     <span class="hidden">Twitter</span>
                 </a>
                 <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/welcome-to-ghost/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
@@ -217,6 +353,12 @@
 </main>
 
 <aside class="read-next">
+    <a class="read-next-story no-cover" href="../untitled/">
+        <section class="post">
+            <h2># Deloitte AAM FARS Capstone Project</h2>
+            <p>Deloitte AAM FARS Capstone Project Background This webapp was put together as apart of a capstone project for Deloitte…</p>
+        </section>
+    </a>
 </aside>
 
 
