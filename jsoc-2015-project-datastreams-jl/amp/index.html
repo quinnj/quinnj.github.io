@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Deloitte AAM FARS Capstone Project</title>
+    <title>JSoC 2015 Project: DataStreams.jl</title>
     <meta name="description" content="">
 
     <meta name="HandheldFriendly" content="True">
@@ -15,15 +15,15 @@
     
     <meta property="og:site_name" content="Du Traitement des Données">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Deloitte AAM FARS Capstone Project">
-    <meta property="og:description" content="Deloitte AAM FARS Capstone Project Background This webapp was put together as apart of a capstone project for Deloitte AAM. The project involved utilizing analytics and machine learning to model fatal auto accident propensity. This webapp aims to provide insight on fatal accident densities by interfacing with public Google API's">
-    <meta property="og:url" content="http://localhost:2368/untitled/">
-    <meta property="article:published_time" content="2016-10-28T04:27:19.000Z">
-    <meta property="article:modified_time" content="2016-10-28T04:28:57.000Z">
+    <meta property="og:title" content="JSoC 2015 Project: DataStreams.jl">
+    <meta property="og:description" content="JSoC 2015 project: DataStreams.jl 25 Oct 2015  |  Jacob Quinn [[Originally posted on the official JuliaLang blog]] Data processing got ya down? Good news! The DataStreams.jl package, er, framework, has arrived! The DataStreams processing framework provides a consistent interface for working with data, from source to sink and eventually">
+    <meta property="og:url" content="http://localhost:2368/jsoc-2015-project-datastreams-jl/">
+    <meta property="article:published_time" content="2016-10-28T04:34:45.000Z">
+    <meta property="article:modified_time" content="2016-10-28T04:34:45.000Z">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Deloitte AAM FARS Capstone Project">
-    <meta name="twitter:description" content="Deloitte AAM FARS Capstone Project Background This webapp was put together as apart of a capstone project for Deloitte AAM. The project involved utilizing analytics and machine learning to model fatal auto accident propensity. This webapp aims to provide insight on fatal accident densities by interfacing with public Google API's">
-    <meta name="twitter:url" content="http://localhost:2368/untitled/">
+    <meta name="twitter:title" content="JSoC 2015 Project: DataStreams.jl">
+    <meta name="twitter:description" content="JSoC 2015 project: DataStreams.jl 25 Oct 2015  |  Jacob Quinn [[Originally posted on the official JuliaLang blog]] Data processing got ya down? Good news! The DataStreams.jl package, er, framework, has arrived! The DataStreams processing framework provides a consistent interface for working with data, from source to sink and eventually">
+    <meta name="twitter:url" content="http://localhost:2368/jsoc-2015-project-datastreams-jl/">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="Jacob Quinn">
     
@@ -48,11 +48,11 @@
         "url": "http://localhost:2368/author/jacob/",
         "sameAs": []
     },
-    "headline": "Deloitte AAM FARS Capstone Project",
-    "url": "http://localhost:2368/untitled/",
-    "datePublished": "2016-10-28T04:27:19.000Z",
-    "dateModified": "2016-10-28T04:28:57.000Z",
-    "description": "Deloitte AAM FARS Capstone Project Background This webapp was put together as apart of a capstone project for Deloitte AAM. The project involved utilizing analytics and machine learning to model fatal auto accident propensity. This webapp aims to provide insight on fatal accident densities by interfacing with public Google API&#x27;s",
+    "headline": "JSoC 2015 Project: DataStreams.jl",
+    "url": "http://localhost:2368/jsoc-2015-project-datastreams-jl/",
+    "datePublished": "2016-10-28T04:34:45.000Z",
+    "dateModified": "2016-10-28T04:34:45.000Z",
+    "description": "JSoC 2015 project: DataStreams.jl 25 Oct 2015  |  Jacob Quinn [[Originally posted on the official JuliaLang blog]] Data processing got ya down? Good news! The DataStreams.jl package, er, framework, has arrived! The DataStreams processing framework provides a consistent interface for working with data, from source to sink and eventually",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "http://localhost:2368"
@@ -845,7 +845,7 @@
         <article class="post">
 
             <header class="post-header">
-                <h1 class="post-title">Deloitte AAM FARS Capstone Project</h1>
+                <h1 class="post-title">JSoC 2015 Project: DataStreams.jl</h1>
                 <section class="post-meta">
                     <p class="author">by <a href="../../author/jacob/">Jacob Quinn</a></p>
                     <time class="post-date" datetime="2016-10-28">2016-10-28</time>
@@ -853,50 +853,77 @@
             </header>
             <section class="post-content">
 
-                <h1 id="deloitteaamfarscapstoneproject">Deloitte AAM FARS Capstone Project</h1>
+                <h1 id="jsoc2015projectdatastreamsjl">JSoC 2015 project: DataStreams.jl</h1>
 
-<h4 id="background">Background</h4>
+<p><span class="timestamp">25 Oct 2015</span>  |  <span class="author"><a href="https://github.com/quinnj">Jacob Quinn</a></span></p>
 
-<p>This <a href="http://quinnj.github.io/heatmap.html">webapp</a> was put together as apart of a capstone project for Deloitte AAM. The project involved utilizing analytics and machine learning to model fatal auto accident propensity. This webapp aims to provide insight on fatal accident densities by interfacing with public Google API's combined with the FARS dataset.</p>
+<p>[[<strong><em>Originally posted on the official <a href="http://julialang.org/blog/2015/10/datastreams">JuliaLang blog</a>]]</em></strong></p>
 
-<h4 id="usage">Usage</h4>
+<p>Data processing got ya down? Good news! The <a href="https://github.com/JuliaDB/DataStreams.jl">DataStreams.jl</a> package, er, framework, has arrived!</p>
 
-<h6 id="navigationapp">Navigation App</h6>
+<p>The DataStreams processing framework provides a consistent interface for working with data, from source to sink and eventually every step in-between. It’s really about putting forth an interface (specific types and methods) to go about ingesting and transferring data sources that hopefully makes for a consistent experience for users, no matter what kind of data they’re working with.</p>
+
+<h6 id="howdoesitwork">How does it work?</h6>
+
+<p>DataStreams is all about creating “sources” (Julia types that represent true data sources; e.g. csv files, database backends, etc.), “sinks” or data destinations, and defining the appropriate <code>Data.stream!(source, sink)</code> methods to actually transfer data from source to sink. Let’s look at a quick example.</p>
+
+<p>Say I have a table of data in a CSV file on my local machine and need to do a little cleaning and aggregation on the data before building a model with the <a href="https://github.com/JuliaStats/GLM.jl">GLM.jl</a> package. Let’s see some code in action:</p>
+
+<pre><code class="language-julia">using CSV, SQLite, DataStreams, DataFrames
+
+# let's create a Julia type that understands our data file
+csv_source = CSV.Source("datafile.csv")
+
+# let's also create an SQLite destination for our data
+# according to its structure
+db = SQLite.DB() # create an in-memory SQLite database
+
+# creates an SQLite table
+sqlite_sink = SQLite.Sink(db, "mydata")
+
+# parse the CSV data directly into our SQLite table
+Data.stream!(csv_source, sqlite_sink)
+
+# now I can do some data cleansing/aggregation
+# ...various SQL statements on the "mydata" SQLite table...
+
+# now I'm ready to get my data out and ready for model fitting
+sqlite_source = SQLite.Source(sqlite_sink)
+
+# stream our data into a Julia structure (Data.Table)
+dt = Data.stream!(sqlite_source, Data.Table)
+
+# convert to DataFrame (non-copying)
+df = DataFrame(dt)
+
+# do model-fitting
+OLS = glm(Y~X,df,Normal(),IdentityLink())  
+</code></pre>
+
+<p>Here we see it’s quite simple to create a <code>Source</code> type by wrapping a true datasource (our CSV file), a destination for that data (an SQLite table), and to transfer the data. We can then turn our <code>SQLite.Sink</code> into an <code>SQLite.Source</code> for getting the data back out again.</p>
+
+<h5 id="sowhathaveyoureallybeenworkingon">So What Have You Really Been Working On?</h5>
+
+<p>Well, a lot actually. Even though the DataStreams framework is currently simple and minimalistic, it took a lot of back and forth on the design, including several discussions at this year’s JuliaCon at MIT. Even with a tidy little framework, however, the bulk of the work still lies in actually implementing the interface in various packages. The two that are ready for release today are <a href="https://github.com/JuliaDB/CSV.jl">CSV.jl</a> and <a href="https://github.com/JuliaDB/SQLite.jl">SQLite.jl</a>. They are currently available for julia 0.4+ only.</p>
+
+<p>Quick rundown of each package:</p>
 
 <ul>
-<li>Enter a starting and ending location</li>
-<li>Select time of day or weather filters</li>
-<li>Push the <code>Go!</code> button</li>
-<li>Select time of day or weather filters to view differences</li>
+<li>CSV: provides types and methods for working with CSV and other delimited files. Aims to be (and currently is) the fastest and most flexible CSV reader in Julia.</li>
+<li>SQLite: an interface to the popular <a href="http://sqlite.org/">SQLite</a> local-machine database. Provides methods for creating/managing database files, along with executing SQL statements and viewing the results of such.</li>
 </ul>
 
-<h6 id="10mileradiusapp">10-Mile Radius App</h6>
+<h5 id="sowhatsnext">So What’s Next?</h5>
 
 <ul>
-<li>Enter a location</li>
-<li>Push the <code>Go!</code> button</li>
+<li><a href="https://github.com/JuliaDB/ODBC.jl">ODBC.jl</a>: the next package to get the DataStreams makeover is ODBC. I’ve already started work on this and hopefully should be ready soon.</li>
+<li>Other packages: I’m always on the hunt for new ways to spread the framework; if you’d be interested in implementing DataStreams for your own package or want to collaborate, just <a href="https://github.com/quinnj">ping</a> me and I’m happy to discuss!</li>
+<li>transforms: an important part of data processing tasks is not just connecting to and moving the data to somewhere else: often you need to clean/transform/aggregate the data in some way in-between. Right now, that’s up to users, but I have some ideas around creating DataStreams-friendly ways to easily incorporate transform steps as data is streamed from one place to another.</li>
+<li>DataStreams for chaining pipelines + transforms: I’m also excited about the idea of creating entire <code>DataStreams</code>, which would define entire data processing tasks end-to-end. Setting up a pipeline that could consistently move and process data gets even more powerful as we start looking into automatic-parallelism and extensibility.</li>
+<li>DataStream scheduling/management: I’m also interested in developing capabilities around scheduling and managing DataStreams.</li>
 </ul>
 
-<h4 id="howitworks">How It Works</h4>
-
-<ul>
-<li>The <strong>Navigation</strong> app queries the <a href="https://developers.google.com/maps/documentation/directions/">Google Directions API</a> to obtain the 1-3 recommended routes from point A to point B; the <strong>10-Mile Radius</strong> app calculates the latitude and longitude bounds on the map after centering it on the entered location</li>
-<li>With the recommended routes, the FARS dataset of fatal auto accidents is processed to identify accidents that occurred along each route that satisfy any time of day or weather filters</li>
-<li>The applicable accidents are plotted along the navigation routes or in the 10-mile bounding box by utilizing the <a href="https://developers.google.com/maps/documentation/javascript/heatmaplayer">Google Heatmap Layer API</a>.</li>
-</ul>
-
-<h4 id="definitions">Definitions</h4>
-
-<ul>
-<li>Data source is the government-provided FARS data set of fatal auto accidents released each year. Data includes attributes of accidents and vehicles and people involved. (<a href="http://www.nhtsa.gov/FARS">http://www.nhtsa.gov/FARS</a>)</li>
-<li><code>Any Time</code>: Show fatal accidents that occurred at any time of day</li>
-<li><code>Morning</code>: Show fatal accidents that occurred between 4 AM and 12 PM</li>
-<li><code>Afternoon</code>: Show fatal accidents that occurred between 12 PM and 7 PM</li>
-<li><code>Night</code>: Show fatal accidents that occurred between 7 PM and 4 AM</li>
-<li><code>Any Weather</code>: Show fatal accidents that occurred under any weather condition</li>
-<li><code>Clear</code>: Show fatal accidents that occurred under clear weather conditions</li>
-<li><code>Adverse</code>: Show fatal accidents that occurred under adverse weather conditions, including rain, snow, sleet, hail, severe wind, and fog.</li>
-</ul>
+<p><em>The work on DataStreams.jl was carried out as part of the Julia Summer of Code program, made possible thanks to the generous support of the <a href="https://moore.org">Gordon and Betty Moore Foundation</a>, and MIT.</em></p>
 
             </section>
 
